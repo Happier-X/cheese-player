@@ -1,14 +1,14 @@
 <template>
   <div class="w-full h-full">
-    <div class="w-full h-full">
-      <CheeseList :list="songList"></CheeseList>
-    </div>
+    <TopSwiper :list="songList"></TopSwiper>
+    <CheeseList :list="songList"></CheeseList>
   </div>
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import subsonicApi from "../../api/subsonic";
 import CheeseList from "../../components/CheeseList.vue";
+import TopSwiper from "./components/TopSwiper.vue";
 
 // 歌曲总数
 const total = ref(0);
