@@ -1,7 +1,11 @@
 <template>
-  <div class="w-full h-full">
-    <TopSwiper :list="songList"></TopSwiper>
-    <CheeseList :list="songList"></CheeseList>
+  <div class="w-full h-full flex flex-col">
+    <div>
+      <TopSwiper :list="songList"></TopSwiper>
+    </div>
+    <div class="flex-1 overflow-auto">
+      <CheeseList :list="songList"></CheeseList>
+    </div>
   </div>
 </template>
 <script setup lang="ts">

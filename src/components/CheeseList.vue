@@ -8,7 +8,10 @@
           {{ index + 1 }}
         </div>
         <div>
-          <img class="size-10 rounded-box" :src="item.coverImg" />
+          <img
+            class="size-10 rounded-box aspect-square object-cover shadow select-none"
+            :src="item.coverImg"
+          />
         </div>
         <div class="list-col-grow">
           <div>{{ item.title }}</div>
