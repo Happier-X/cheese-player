@@ -26,6 +26,12 @@ const request = (
   });
 };
 
+interface mediaLibraryServer {
+  url: string;
+  username: string;
+  password: string;
+}
+
 /**
  * Subsonic请求
  */
@@ -35,25 +41,27 @@ const subsonicRequest = async (
   options?: RequestInit & ClientOptions
 ) => {
   const store = await Store.load("store.setting");
+  let mediaLibraryServer: mediaLibraryServer = (await store.get(
+    "mediaLibraryServer"
+  )) || {
+    url: "",
+    username: "",
+    password: "",
+  };
   const commonParams = {
-    u: (await store.get("mediaLibraryServerUsername")) || "",
-    t:
-      MD5(
-        `${await store.get("mediaLibraryServerPassword")}cheese`
-      ).toString() || "",
+    u: mediaLibraryServer?.username || "",
+    t: MD5(`${mediaLibraryServer?.password}cheese`).toString() || "",
     s: "cheese",
     v: "1.16.1",
     c: "cheese",
     f: "json",
   } as Record<string, string>;
   const subsonicUrl = params
-    ? `${await store.get("mediaLibraryServerUrl")}${url}?${new URLSearchParams({
+    ? `${mediaLibraryServer?.url}${url}?${new URLSearchParams({
         ...commonParams,
         ...params,
       })}`
-    : `${await store.get("mediaLibraryServerUrl")}${url}?${new URLSearchParams(
-        commonParams
-      )}`;
+    : `${mediaLibraryServer?.url}${url}?${new URLSearchParams(commonParams)}`;
   return new Promise((resolve, reject) => {
     fetch(subsonicUrl, options)
       .then(async (response) => {

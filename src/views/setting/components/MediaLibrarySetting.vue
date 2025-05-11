@@ -18,7 +18,7 @@
           <input
             type="text"
             class="input input-md w-full"
-            v-model="form.mediaLibraryServerUrl"
+            v-model="mediaLibraryServerForm.url"
             placeholder="服务地址"
           />
         </label>
@@ -28,7 +28,7 @@
             type="text"
             class="input input-md w-full"
             placeholder="用户名"
-            v-model="form.mediaLibraryServerUsername"
+            v-model="mediaLibraryServerForm.username"
           />
         </label>
         <label class="floating-label mt-6">
@@ -37,7 +37,7 @@
             type="password"
             class="input input-md w-full"
             placeholder="密码"
-            v-model="form.mediaLibraryServerPassword"
+            v-model="mediaLibraryServerForm.password"
           />
         </label>
       </fieldset>
@@ -64,38 +64,28 @@ const visible = ref(false);
 const handleDialogClose = () => {
   visible.value = false;
 };
-const form = ref({
-  mediaLibraryServerUrl: "",
-  mediaLibraryServerUsername: "",
-  mediaLibraryServerPassword: "",
+const mediaLibraryServerForm = ref({
+  url: "",
+  username: "",
+  password: "",
 });
 let settingStore = null as Store | null;
 onMounted(async () => {
   settingStore = await Store.load("store.setting");
-  form.value.mediaLibraryServerUrl =
-    (await settingStore?.get("mediaLibraryServerUrl")) || "";
-  form.value.mediaLibraryServerUsername =
-    (await settingStore?.get("mediaLibraryServerUsername")) || "";
-  form.value.mediaLibraryServerPassword =
-    (await settingStore?.get("mediaLibraryServerPassword")) || "";
+  mediaLibraryServerForm.value = (await settingStore?.get(
+    "mediaLibraryServer"
+  )) || {
+    url: "",
+    username: "",
+    password: "",
+  };
 });
 /**
  * 保存设置
  */
 const handleSave = async () => {
   // 设置存储
-  await settingStore?.set(
-    "mediaLibraryServerUrl",
-    form.value.mediaLibraryServerUrl
-  );
-  await settingStore?.set(
-    "mediaLibraryServerUsername",
-    form.value.mediaLibraryServerUsername
-  );
-  await settingStore?.set(
-    "mediaLibraryServerPassword",
-    form.value.mediaLibraryServerPassword
-  );
+  await settingStore?.set("mediaLibraryServer", mediaLibraryServerForm.value);
   visible.value = false;
   const res = await api.ping();
   console.log(1111111111, res);
