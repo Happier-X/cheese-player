@@ -1,7 +1,7 @@
 <template>
   <div class="w-full h-full overflow-y-scroll scrollbar-hide">
     <ul class="list">
-      <li class="list-row" v-for="(item, index) in list" :key="index">
+      <li class="list-row static" v-for="(item, index) in list" :key="index">
         <div
           class="w-16 text-center text-4xl font-thin opacity-30 tabular-nums"
         >
