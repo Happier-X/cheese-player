@@ -70,7 +70,7 @@ import CheeseDialog from "../../../components/CheeseDialog.vue";
 import { RiEditLine as EditIcon } from "@remixicon/vue";
 import { ref, onMounted } from "vue";
 import { Store } from "@tauri-apps/plugin-store";
-import { api } from "../../../api";
+import subsonicApi from "../../../api/subsonic";
 
 // 是否展示对话框
 const visible = ref(false);
@@ -113,7 +113,7 @@ const handleSave = async () => {
  * 测试连接
  */
 const handlePing = async () => {
-  const res: any = await api.ping();
+  const res: any = await subsonicApi.ping();
   if (res.status === "ok") {
     isConnected.value = true;
   } else {

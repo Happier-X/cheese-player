@@ -40,8 +40,8 @@ const subsonicRequest = async (
   params?: object,
   options?: RequestInit & ClientOptions
 ) => {
-  const store = await Store.load("store.setting");
-  let mediaLibraryServer: mediaLibraryServer = (await store.get(
+  const settingStore = await Store.load("store.setting");
+  let mediaLibraryServer: mediaLibraryServer = (await settingStore.get(
     "mediaLibraryServer"
   )) || {
     url: "",
