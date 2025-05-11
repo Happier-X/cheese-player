@@ -1,7 +1,25 @@
 <template>
   <CheeseCard title="媒体库">
     <div class="flex items-center justify-between">
-      <div>服务器配置</div>
+      <div class="flex items-center justify-center gap-2">
+        <div>
+          {{
+            mediaLibraryServerForm.url
+              ? mediaLibraryServerForm.url
+              : "服务器配置"
+          }}
+        </div>
+        <div class="inline-grid *:[grid-area:1/1]">
+          <div
+            class="status animate-ping"
+            :class="isConnected ? 'status-success' : 'status-error'"
+          ></div>
+          <div
+            class="status"
+            :class="isConnected ? 'status-success' : 'status-error'"
+          ></div>
+        </div>
+      </div>
       <button
         class="btn btn-sm btn-circle btn-ghost"
         @click="visible = !visible"
@@ -11,37 +29,35 @@
     </div>
   </CheeseCard>
   <CheeseDialog v-model="visible" title="服务器配置">
-    <form action="#">
-      <fieldset class="fieldset">
-        <label class="floating-label">
-          <span>服务地址</span>
-          <input
-            type="text"
-            class="input input-md w-full"
-            v-model="mediaLibraryServerForm.url"
-            placeholder="服务地址"
-          />
-        </label>
-        <label class="floating-label mt-6">
-          <span>用户名</span>
-          <input
-            type="text"
-            class="input input-md w-full"
-            placeholder="用户名"
-            v-model="mediaLibraryServerForm.username"
-          />
-        </label>
-        <label class="floating-label mt-6">
-          <span>密码</span>
-          <input
-            type="password"
-            class="input input-md w-full"
-            placeholder="密码"
-            v-model="mediaLibraryServerForm.password"
-          />
-        </label>
-      </fieldset>
-    </form>
+    <fieldset class="fieldset">
+      <label class="floating-label">
+        <span>服务地址</span>
+        <input
+          type="text"
+          class="input input-md w-full"
+          v-model="mediaLibraryServerForm.url"
+          placeholder="服务地址"
+        />
+      </label>
+      <label class="floating-label mt-6">
+        <span>用户名</span>
+        <input
+          type="text"
+          class="input input-md w-full"
+          placeholder="用户名"
+          v-model="mediaLibraryServerForm.username"
+        />
+      </label>
+      <label class="floating-label mt-6">
+        <span>密码</span>
+        <input
+          type="password"
+          class="input input-md w-full"
+          placeholder="密码"
+          v-model="mediaLibraryServerForm.password"
+        />
+      </label>
+    </fieldset>
     <template #action>
       <button class="btn" @click="handleDialogClose">关闭</button>
       <button class="btn btn-neutral" @click="handleSave">保存</button>
@@ -64,11 +80,15 @@ const visible = ref(false);
 const handleDialogClose = () => {
   visible.value = false;
 };
+/**
+ * 媒体库服务器配置表单
+ */
 const mediaLibraryServerForm = ref({
   url: "",
   username: "",
   password: "",
 });
+// 设置存储
 let settingStore = null as Store | null;
 onMounted(async () => {
   settingStore = await Store.load("store.setting");
@@ -79,15 +99,27 @@ onMounted(async () => {
     username: "",
     password: "",
   };
+  handlePing();
 });
 /**
  * 保存设置
  */
 const handleSave = async () => {
-  // 设置存储
   await settingStore?.set("mediaLibraryServer", mediaLibraryServerForm.value);
   visible.value = false;
-  const res = await api.ping();
-  console.log(1111111111, res);
+  handlePing();
 };
+/**
+ * 测试连接
+ */
+const handlePing = async () => {
+  const res = await api.ping();
+  if (res.status === "ok") {
+    isConnected.value = true;
+  } else {
+    isConnected.value = false;
+  }
+};
+// 是否连接成功
+const isConnected = ref(false);
 </script>
