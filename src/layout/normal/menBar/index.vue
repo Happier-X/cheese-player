@@ -8,7 +8,6 @@
       <RouterLink
         :to="item.path"
         :class="{ 'text-neutral': activeMenuKey === item.key }"
-        @click="activeMenuKey = item.key"
       >
         {{ item.name }}
       </RouterLink>
@@ -16,7 +15,9 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
+import { useRoute } from "vue-router";
+
 // 当前选中的菜单
 const activeMenuKey = ref("song");
 // 菜单列表
@@ -42,4 +43,14 @@ const menuList = ref([
     path: "/songList",
   },
 ]);
+// 路由实例
+const route = useRoute();
+// 监听路由变化
+watch(
+  () => route.path,
+  (newPath) => {
+    activeMenuKey.value =
+      menuList.value.find((item) => item.path === newPath)?.key || "";
+  }
+);
 </script>

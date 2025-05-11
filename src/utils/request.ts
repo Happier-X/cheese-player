@@ -71,7 +71,6 @@ const subsonicRequest = async ({
       })}`
     : `${mediaLibraryServer?.url}${url}?${new URLSearchParams(commonParams)}`;
   if (getOriginalURL) {
-    console.log("subsonicUrl", subsonicUrl);
     return subsonicUrl;
   } else {
     return new Promise((resolve, reject) => {

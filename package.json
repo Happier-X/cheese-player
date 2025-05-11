@@ -28,6 +28,7 @@
     "@types/crypto-js": "^4.2.2",
     "@types/howler": "^2.2.12",
     "@vitejs/plugin-vue": "^5.2.1",
+    "code-inspector-plugin": "^0.20.10",
     "daisyui": "^5.0.35",
     "typescript": "~5.6.2",
     "vite": "^6.0.3",
