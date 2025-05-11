@@ -113,7 +113,7 @@ const handleSave = async () => {
  * 测试连接
  */
 const handlePing = async () => {
-  const res = await api.ping();
+  const res: any = await api.ping();
   if (res.status === "ok") {
     isConnected.value = true;
   } else {
