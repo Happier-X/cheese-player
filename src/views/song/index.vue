@@ -1,7 +1,7 @@
 <template>
-  <div class="w-full h-full">
-    <div class="flex gap-4">
-    </div>
+  <div class="w-full h-full bg-pink-100">
+    <div class="flex gap-3"></div>
+    <div></div>
   </div>
 </template>
 <script setup lang="ts">
@@ -27,6 +27,9 @@ const getSongList = async () => {
         songOffset: current * size,
       });
       if (res.searchResult2?.song && res.searchResult2.song.length > 0) {
+        res.searchResult2.song.forEach(async (item: any) => {
+          item.coverImg = await subsonicApi.getCoverById({ id: item.id });
+        });
         songList.value.push(...res.searchResult2.song);
         if (res.searchResult2.song.length < size) {
           hasMoreSongs = false;

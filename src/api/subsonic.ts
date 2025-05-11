@@ -4,7 +4,7 @@ const subsonicApi = {
   /**
    * 检查连接
    */
-  ping: () => subsonicRequest("/rest/ping"),
+  ping: () => subsonicRequest({ url: "/rest/ping" }),
   /**
    * 搜索专辑、歌曲、艺术家
    * @param {Object} params 搜索参数
@@ -17,7 +17,7 @@ const subsonicApi = {
    * @param {number} [params.songOffset=0] 可选的，歌曲列表偏移量，用于分页，默认0
    * @param {string} [params.musicFolderId] 可选的，音乐文件夹ID
    */
-  search: (params: object) => subsonicRequest("/rest/search2", params),
+  search: (params: object) => subsonicRequest({ url: "/rest/search2", params }),
   /**
    * 根据 id 获取封面
    * @param {Object} params 参数
@@ -25,7 +25,11 @@ const subsonicApi = {
    * @param {string} [params.size] 可选的，封面大小
    */
   getCoverById: (params: object) =>
-    subsonicRequest("/rest/getCoverArt", params),
+    subsonicRequest({
+      url: "/rest/getCoverArt",
+      params,
+      getOriginalURL: true,
+    }),
 };
 
 export default subsonicApi;

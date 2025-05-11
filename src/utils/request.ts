@@ -32,14 +32,22 @@ interface mediaLibraryServer {
   password: string;
 }
 
+interface SubsonicRequestOptions {
+  url: URL | Request | string;
+  params?: object;
+  options?: RequestInit & ClientOptions;
+  getOriginalURL?: boolean;
+}
+
 /**
  * Subsonic请求
  */
-const subsonicRequest = async (
-  url: URL | Request | string,
-  params?: object,
-  options?: RequestInit & ClientOptions
-) => {
+const subsonicRequest = async ({
+  url,
+  params = {},
+  options = {},
+  getOriginalURL = false,
+}: SubsonicRequestOptions) => {
   const settingStore = await Store.load("store.setting");
   let mediaLibraryServer: mediaLibraryServer = (await settingStore.get(
     "mediaLibraryServer"
@@ -62,21 +70,26 @@ const subsonicRequest = async (
         ...params,
       })}`
     : `${mediaLibraryServer?.url}${url}?${new URLSearchParams(commonParams)}`;
-  return new Promise((resolve, reject) => {
-    fetch(subsonicUrl, options)
-      .then(async (response) => {
-        if (response.status === 200) {
-          resolve((await response.json())["subsonic-response"]);
-        } else {
-          reject(
-            new Error(`Request failed with status code ${response.status}`)
-          );
-        }
-      })
-      .catch((error) => {
-        reject(error);
-      });
-  });
+  if (getOriginalURL) {
+    console.log("subsonicUrl", subsonicUrl);
+    return subsonicUrl;
+  } else {
+    return new Promise((resolve, reject) => {
+      fetch(subsonicUrl, options)
+        .then(async (response) => {
+          if (response.status === 200) {
+            resolve((await response.json())["subsonic-response"]);
+          } else {
+            reject(
+              new Error(`Request failed with status code ${response.status}`)
+            );
+          }
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  }
 };
 
 export { request, subsonicRequest };
