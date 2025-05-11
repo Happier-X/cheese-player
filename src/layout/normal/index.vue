@@ -6,7 +6,7 @@
     <div class="w-full h-[48px]">
       <MenuBar></MenuBar>
     </div>
-    <div class="w-full h-[calc(100%-171px)] px-[10%]">
+    <div class="w-full h-[calc(100%-171px)] px-[5%]">
       <RouterView v-slot="{ Component }">
         <KeepAlive>
           <component :is="Component"></component>

@@ -1,10 +1,10 @@
 <template>
   <Swiper
     :modules="[Autoplay]"
-    :slides-per-view="5"
+    :slides-per-view="6"
     :space-between="50"
     :autoplay="true"
-    :loop="list.length > 5 ? true : false"
+    :loop="list.length > 6 ? true : false"
   >
     <SwiperSlide v-for="(item, index) in list" :key="index" class="py-3">
       <img
