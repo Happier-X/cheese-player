@@ -2,7 +2,11 @@
   <div class="w-full h-full overflow-y-scroll scrollbar-hide">
     <ul class="list">
       <li
-        class="list-row static"
+        :class="
+          playerStore.currentSongInfo?.id === item.id
+            ? 'bg-gray-200 list-row static'
+            : 'list-row static hover:bg-gray-100'
+        "
         v-for="(item, index) in list"
         :key="index"
         @dblclick="handlePlay(item)"
