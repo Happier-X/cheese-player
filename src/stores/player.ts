@@ -2,6 +2,7 @@ import { Howl } from "howler";
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import { shuffle } from "../utils/shuffle";
+import subsonicApi from "../api/subsonic";
 
 // 播放器状态管理
 export const usePlayerStore = defineStore("player", () => {
@@ -41,46 +42,45 @@ export const usePlayerStore = defineStore("player", () => {
       );
     }
   }
-  /**
-   * 更新播放进度的步进函数
-   */
-  function step() {
-    if (sound.value) {
-      // 获取当前播放位置
-      const seek = sound.value.seek() || 0;
-      currentTime.value = seek;
-      // 计算进度百分比
-      progress.value = (seek / (sound.value.duration() || 1)) * 100 || 0;
-      // 如果还在播放，继续更新
-      if (sound.value.playing()) {
-        requestAnimationFrame(step);
-      }
-    }
-  }
+  // /**
+  //  * 更新播放进度的步进函数
+  //  */
+  // function step() {
+  //   if (sound.value) {
+  //     // 获取当前播放位置
+  //     const seek = sound.value.seek() || 0;
+  //     currentTime.value = seek;
+  //     // 计算进度百分比
+  //     progress.value = (seek / (sound.value.duration() || 1)) * 100 || 0;
+  //     // 如果还在播放，继续更新
+  //     if (sound.value.playing()) {
+  //       requestAnimationFrame(step);
+  //     }
+  //   }
+  // }
   /**
    * 加载歌曲
    */
   async function loadSong(song) {
     currentTime.value = 0;
     progress.value = 0;
-
     currentSongInfo.value = song;
     sound.value?.unload();
 
     try {
-      let url = await api.getStreamUrl({ id: song.id });
+      let url = await subsonicApi.getStreamUrl({ id: song.id });
       sound.value = new Howl({
         src: [url],
         html5: true,
         onplay: () => {
           duration.value = sound.value?.duration() || 0;
-          // 开始更新进度
-          requestAnimationFrame(step);
+          // // 开始更新进度
+          // requestAnimationFrame(step);
           isPlaying.value = true;
         },
         onseek: () => {
-          // 手动调整进度后继续更新
-          requestAnimationFrame(step);
+          // // 手动调整进度后继续更新
+          // requestAnimationFrame(step);
         },
         onend: async () => {
           if (loopMode.value === 0) {
@@ -163,17 +163,17 @@ export const usePlayerStore = defineStore("player", () => {
     setPlayQueue(playQueue.value);
   }
 
-  /**
-   * 设置播放进度
-   */
-  function seek(percent: number) {
-    if (sound.value) {
-      const time = (sound.value.duration() || 0) * (percent / 100);
-      sound.value.seek(time);
-      currentTime.value = time;
-      progress.value = percent;
-    }
-  }
+  // /**
+  //  * 设置播放进度
+  //  */
+  // function seek(percent: number) {
+  //   if (sound.value) {
+  //     const time = (sound.value.duration() || 0) * (percent / 100);
+  //     sound.value.seek(time);
+  //     currentTime.value = time;
+  //     progress.value = percent;
+  //   }
+  // }
 
   return {
     setPlayQueue,
@@ -193,6 +193,6 @@ export const usePlayerStore = defineStore("player", () => {
     duration,
     currentTime,
     progress,
-    seek,
+    // seek,
   };
 });

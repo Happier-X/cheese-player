@@ -30,6 +30,23 @@ const subsonicApi = {
       params,
       getOriginalURL: true,
     }),
+  /**
+   * 歌曲播放链接
+   * @param {Object} params 参数
+   * @param {string} params.id 歌曲 id
+   * @param {string} [params.maxBitRate] 可选的，最大比特率
+   * @param {string} [params.format] 可选的，格式
+   * @param {string} [params.timeOffset] 可选的，时间偏移
+   * @param {string} [params.size] 可选的，大小
+   * @param {string} [params.estimateContentLength] 可选的，估计内容长度
+   * @param {string} [params.converted] 可选的，转换
+   */
+  getStreamUrl: (params: object) =>
+    subsonicRequest({
+      url: "/rest/stream",
+      params,
+      getOriginalURL: true,
+    }),
 };
 
 export default subsonicApi;

@@ -1,7 +1,12 @@
 <template>
   <div class="w-full h-full overflow-y-scroll scrollbar-hide">
     <ul class="list">
-      <li class="list-row static" v-for="(item, index) in list" :key="index">
+      <li
+        class="list-row static"
+        v-for="(item, index) in list"
+        :key="index"
+        @dblclick="handlePlay(item)"
+      >
         <div
           class="w-16 text-center text-4xl font-thin opacity-30 tabular-nums"
         >
@@ -28,7 +33,8 @@
 </template>
 <script setup lang="ts">
 import { RiMore2Line as MoreIcon } from "@remixicon/vue";
-// import { usePlayerStore } from "@renderer/stores/player";
+import { usePlayerStore } from "../stores/player";
+
 /**
  * 接收的属性
  */
@@ -38,14 +44,14 @@ const props = defineProps({
     default: () => [],
   },
 });
-// // 播放器状态管理
-// const playerStore = usePlayerStore();
-// /**
-//  * 播放歌曲
-//  */
-// async function handlePlay(item) {
-//   await playerStore.loadSong(item);
-//   playerStore.setPlayQueue(props.list);
-//   playerStore.play();
-// }
+// 播放器状态管理
+const playerStore = usePlayerStore();
+/**
+ * 播放歌曲
+ */
+async function handlePlay(item) {
+  await playerStore.loadSong(item);
+  playerStore.setPlayQueue(props.list);
+  playerStore.play();
+}
 </script>
