@@ -3,11 +3,7 @@
     <div class="flex items-center justify-between">
       <div class="flex items-center justify-center gap-2">
         <div>
-          {{
-            mediaLibraryServerForm.url
-              ? mediaLibraryServerForm.url
-              : "服务器配置"
-          }}
+          {{ mediaLibraryServer.url ? mediaLibraryServer.url : "服务器配置" }}
         </div>
         <div class="inline-grid *:[grid-area:1/1]">
           <div
@@ -22,7 +18,7 @@
       </div>
       <button
         class="btn btn-sm btn-circle btn-ghost"
-        @click="visible = !visible"
+        @click="handleEditMediaLibraryServer"
       >
         <EditIcon size="20px"></EditIcon>
       </button>
@@ -88,11 +84,19 @@ const mediaLibraryServerForm = ref({
   username: "",
   password: "",
 });
+/**
+ * 媒体库服务配置
+ */
+const mediaLibraryServer = ref({
+  url: "",
+  username: "",
+  password: "",
+});
 // 设置存储
 let settingStore = null as Store | null;
 onMounted(async () => {
   settingStore = await Store.load("store.setting");
-  mediaLibraryServerForm.value = (await settingStore?.get(
+  mediaLibraryServer.value = (await settingStore?.get(
     "mediaLibraryServer"
   )) || {
     url: "",
@@ -101,6 +105,15 @@ onMounted(async () => {
   };
   handlePing();
 });
+/**
+ * 编辑媒体库服务器配置
+ */
+const handleEditMediaLibraryServer = () => {
+  visible.value = true;
+  mediaLibraryServerForm.value = JSON.parse(
+    JSON.stringify(mediaLibraryServer.value)
+  );
+};
 /**
  * 保存设置
  */
