@@ -29,7 +29,7 @@ export const usePlayerStore = defineStore("player", () => {
   /**
    * 设置播放队列
    */
-  function setPlayQueue(list) {
+  function setPlayQueue(list: any) {
     if (playMode.value === 1) {
       playQueue.value = shuffle(list);
       currentPlayIndex.value = playQueue.value.findIndex(
@@ -66,7 +66,6 @@ export const usePlayerStore = defineStore("player", () => {
     progress.value = 0;
     currentSongInfo.value = song;
     sound.value?.unload();
-
     try {
       let url = await subsonicApi.getStreamUrl({ id: song.id });
       sound.value = new Howl({

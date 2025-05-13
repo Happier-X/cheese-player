@@ -1,1 +1,1 @@
-<template>歌单</template>
+<template>开发中</template>
