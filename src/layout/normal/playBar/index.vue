@@ -2,7 +2,7 @@
   <div
     class="w-full h-full p-3 flex items-center justify-between gap-3 relative"
   >
-    <div class="w-full absolute top-[-1px] left-0">
+    <div class="w-full absolute top-[-7px] left-0">
       <ProgressBar />
     </div>
     <div class="w-full h-full">
