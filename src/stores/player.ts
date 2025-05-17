@@ -61,17 +61,17 @@ export const usePlayerStore = defineStore("player", () => {
   /**
    * 加载歌曲
    */
-  async function loadSong(song) {
+  async function loadSong(song:any) {
     currentTime.value = 0;
     progress.value = 0;
     currentSongInfo.value = song;
     sound.value?.unload();
     try {
-      let url = await subsonicApi.getStreamUrl({ id: song.id });
+      let url = await subsonicApi.getStreamUrl({ id: song.id }) as any;
       sound.value = new Howl({
         src: [url],
         html5: true,
-        onload:()=>{
+        onload: () => {
           duration.value = sound.value?.duration() || 0;
         }, 
         onplay: () => {
@@ -152,14 +152,14 @@ export const usePlayerStore = defineStore("player", () => {
   /**
    * 设置循环模式，0：列表循环，1：单曲循环
    */
-  function setLoopMode(mode) {
+  function setLoopMode(mode:any) {
     loopMode.value = mode;
   }
 
   /**
    * 设置播放模式，0：顺序播放，1：随机播放
    */
-  function setPlayMode(mode) {
+  function setPlayMode(mode:any) {
     playMode.value = mode;
     setPlayQueue(playQueue.value);
   }
@@ -173,6 +173,9 @@ export const usePlayerStore = defineStore("player", () => {
       sound.value.seek(time);
       currentTime.value = time;
       progress.value = percent;
+      if(sound.value.playing()){
+        requestAnimationFrame(step);
+      }
     }
   }
 
