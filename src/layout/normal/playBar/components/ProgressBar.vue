@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-[15px] py-[6px] cursor-pointer" ref="progressBarRef" @click="handleClick" @mousedown="handleMouseDown" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
+  <div class="w-full h-[15px] py-[6px] cursor-pointer overflow-hidden" ref="progressBarRef" @click="handleClick" @mousedown="handleMouseDown" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
     <div class="w-full h-[3px] bg-gray-300 relative">
       <div class="w-0 h-full relative" ref="filledBarRef">
         <div class="h-full w-full bg-black"></div>
