@@ -1,7 +1,7 @@
 <template>
   <div class="w-full h-full bg-base-100">
     <div class="w-full h-[48px]">
-      <TopBar></TopBar>
+      <TitleBar/>
     </div>
     <div class="w-full h-[48px]">
       <MenuBar></MenuBar>
@@ -19,7 +19,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import TopBar from "./topBar/index.vue";
+import TitleBar from "./TitleBar/index.vue";
 import MenuBar from "./menBar/index.vue";
 import PlayBar from "./playBar/index.vue";
 </script>
