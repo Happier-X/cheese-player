@@ -3,6 +3,8 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import { shuffle } from "../utils/shuffle";
 import subsonicApi from "../api/subsonic";
+import { parseWebStream } from "music-metadata";
+import Lyric from "lrc-file-parser";
 
 // 播放器状态管理
 export const usePlayerStore = defineStore("player", () => {
@@ -24,8 +26,29 @@ export const usePlayerStore = defineStore("player", () => {
   const duration = ref(0);
   // 当前播放时间
   const currentTime = ref(0);
+  // 歌词当前播放行数
+  const currentLyricLine = ref(0);
+  // 歌词数组
+  const lyricLines: any = ref([]);
   // 进度百分比
   const progress = ref(0);
+  // 歌词解析器
+  let lrc = new Lyric({
+    onPlay: (line) => {
+      // line: 当前播放行数
+      currentLyricLine.value = line
+    },
+    onSetLyric: (lines) => {
+      // lines: 歌词数组
+      lyricLines.value = lines
+    },
+    // 偏移时间，默认为150ms,单位为毫秒
+    offset: 0,
+    // 播放速度，默认为1
+    playbackRate: 1,
+    // 是否去除空行，默认为true
+    isRemoveBlankLine: true,
+  });
   /**
    * 设置播放队列
    */
@@ -50,6 +73,7 @@ export const usePlayerStore = defineStore("player", () => {
       // 获取当前播放位置
       const seek = sound.value.seek() || 0;
       currentTime.value = seek;
+      lrc.play(seek * 1000);
       // 计算进度百分比
       progress.value = (seek / (sound.value.duration() || 1)) * 100 || 0;
       // 如果还在播放，继续更新
@@ -61,19 +85,20 @@ export const usePlayerStore = defineStore("player", () => {
   /**
    * 加载歌曲
    */
-  async function loadSong(song:any) {
+  async function loadSong(song: any) {
     currentTime.value = 0;
     progress.value = 0;
     currentSongInfo.value = song;
     sound.value?.unload();
     try {
       let url = await subsonicApi.getStreamUrl({ id: song.id }) as any;
+      currentSongInfo.value.url = url;
       sound.value = new Howl({
         src: [url],
         html5: true,
         onload: () => {
           duration.value = sound.value?.duration() || 0;
-        }, 
+        },
         onplay: () => {
           isPlaying.value = true;
           // 开始更新进度
@@ -100,9 +125,10 @@ export const usePlayerStore = defineStore("player", () => {
   /**
    * 播放歌曲
    */
-  function play() {
+  async function play() {
     sound.value?.play();
     isPlaying.value = true;
+    await getLyric(currentSongInfo.value.url);
   }
 
   /**
@@ -138,6 +164,7 @@ export const usePlayerStore = defineStore("player", () => {
    */
   function pause() {
     sound.value?.pause();
+    lrc.pause();
     isPlaying.value = false;
   }
 
@@ -152,14 +179,14 @@ export const usePlayerStore = defineStore("player", () => {
   /**
    * 设置循环模式，0：列表循环，1：单曲循环
    */
-  function setLoopMode(mode:any) {
+  function setLoopMode(mode: any) {
     loopMode.value = mode;
   }
 
   /**
    * 设置播放模式，0：顺序播放，1：随机播放
    */
-  function setPlayMode(mode:any) {
+  function setPlayMode(mode: any) {
     playMode.value = mode;
     setPlayQueue(playQueue.value);
   }
@@ -173,9 +200,21 @@ export const usePlayerStore = defineStore("player", () => {
       sound.value.seek(time);
       currentTime.value = time;
       progress.value = percent;
-      if(sound.value.playing()){
+      if (sound.value.playing()) {
         requestAnimationFrame(step);
       }
+    }
+  }
+
+  /**
+   * 获取当前歌曲的歌词
+   */
+  async function getLyric(url: string) {
+    const response = await fetch(url);
+    const webStream = response.body;
+    const res = await parseWebStream(webStream);
+    if (res && res.common && res.common.lyrics && res.common.lyrics.length > 0) {
+      lrc.setLyric(res.common.lyrics[0].text as string);
     }
   }
 
@@ -198,5 +237,7 @@ export const usePlayerStore = defineStore("player", () => {
     currentTime,
     progress,
     seek,
+    currentLyricLine,
+    lyricLines
   };
 });
