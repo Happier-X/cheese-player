@@ -215,6 +215,13 @@ export const usePlayerStore = defineStore("player", () => {
     }
   }
 
+  /**
+   * 保存当前播放信息
+   */
+  function saveCurrentSongInfo() {
+    
+  }
+
   return {
     setPlayQueue,
     loadSong,
