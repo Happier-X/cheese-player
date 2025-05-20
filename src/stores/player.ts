@@ -69,17 +69,14 @@ export const usePlayerStore = defineStore("player", () => {
    * 更新播放进度的步进函数
    */
   function step() {
-    if (sound.value) {
+    if (sound.value && sound.value.playing()) {
       // 获取当前播放位置
       const seek = sound.value.seek() || 0;
       currentTime.value = seek;
-      lrc.play(seek * 1000);
       // 计算进度百分比
       progress.value = (seek / (sound.value.duration() || 1)) * 100 || 0;
-      // 如果还在播放，继续更新
-      if (sound.value.playing()) {
-        requestAnimationFrame(step);
-      }
+      lrc.play(seek * 1000);
+      requestAnimationFrame(step);
     }
   }
   /**
