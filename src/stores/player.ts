@@ -5,6 +5,7 @@ import { shuffle } from "../utils/shuffle";
 import subsonicApi from "../api/subsonic";
 import { parseWebStream } from "music-metadata";
 import Lyric from "lrc-file-parser";
+import { Store } from "@tauri-apps/plugin-store";
 
 // 播放器状态管理
 export const usePlayerStore = defineStore("player", () => {
@@ -215,11 +216,16 @@ export const usePlayerStore = defineStore("player", () => {
     }
   }
 
+  let playerStore = null as Store | null;
   /**
    * 保存当前播放信息
    */
-  function saveCurrentSongInfo() {
-    
+  const saveCurrentPlayInfo = async () => {
+    playerStore = await Store.load("store.player");
+    await playerStore?.set("currentPlayInfo", {
+      currentSongInfo: currentSongInfo.value,
+      currentPlayQueue: playQueue.value,
+    });
   }
 
   return {
@@ -242,6 +248,7 @@ export const usePlayerStore = defineStore("player", () => {
     progress,
     seek,
     currentLyricLine,
-    lyricLines
+    lyricLines,
+    saveCurrentPlayInfo
   };
 });

@@ -5,10 +5,20 @@
 import Layout from "./layout/index.vue";
 import { getCurrentWindow } from "@tauri-apps/api/window";
 import { usePlayerStore } from "./stores/player";
+import { onMounted } from "vue";
+import { Store } from "@tauri-apps/plugin-store";
 
 const playerStore = usePlayerStore();
 const appWindow = getCurrentWindow();
-appWindow.onCloseRequested(() => {
-  playerStore.saveCurrentPlayInfo();
+appWindow.onCloseRequested(async () => {
+  await playerStore.saveCurrentPlayInfo();
+  await appWindow.close();
 });
+let store = null as Store | null;
+onMounted(async () => {
+  store = await Store.load("store.player");
+  const res = await store?.get("currentPlayInfo");
+  await playerStore.loadSong(res.currentSongInfo);
+  playerStore.setPlayQueue(res.currentPlayQueue);
+})
 </script>

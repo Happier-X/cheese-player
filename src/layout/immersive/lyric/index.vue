@@ -20,7 +20,7 @@ import { onMounted, ref, useTemplateRef, watch } from "vue";
 import { usePlayerStore } from "../../../stores/player";
 const playerStore = usePlayerStore();
 const lyricLineRefs = ref(new Map());
-const setRef = (el, index) => {
+const setRef = (el: HTMLElement | null, index: number) => {
     if (el) {
         lyricLineRefs.value.set(index, el);
     } else {
@@ -33,6 +33,7 @@ const lyricRef = useTemplateRef('lyricRef')
 onMounted(() => {
     const firstLine = lyricLineRefs.value.get(0);
     const lastLine = lyricLineRefs.value.get(playerStore.lyricLines.length - 1);
+    if (!topSpaceRef.value || !bottomSpaceRef.value || !lyricRef.value || !firstLine || !lastLine) return;
     topSpaceRef.value.style.height = `${(lyricRef.value.clientHeight / 2 - firstLine.clientHeight / 2)}px`;
     bottomSpaceRef.value.style.height = `${(lyricRef.value.clientHeight / 2 - lastLine.clientHeight / 2)}px`;
 })
