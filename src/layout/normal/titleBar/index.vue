@@ -1,12 +1,9 @@
 <template>
-  <div
-    data-tauri-drag-region
-    class="w-full h-full px-3 flex items-center justify-between"
-  >
-    <NavControl></NavControl>
+  <div data-tauri-drag-region class="w-full h-full px-3 flex items-center justify-between">
+    <NavControl />
     <div class="flex items-center justify-center gap-2">
-      <SoftwareControl></SoftwareControl>
-      <WindowControl></WindowControl>
+      <SoftwareControl />
+      <WindowControl />
     </div>
   </div>
 </template>

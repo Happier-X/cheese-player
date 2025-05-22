@@ -1,14 +1,8 @@
 <template>
   <div class="w-full h-full flex items-center justify-center gap-20">
-    <div
-      v-for="(item, index) in menuList"
-      :key="index"
-      class="rounded-box p-1 text-gray-300 hover:text-neutral text-nowrap font-bold text-lg"
-    >
-      <RouterLink
-        :to="item.path"
-        :class="{ 'text-neutral': activeMenuKey === item.key }"
-      >
+    <div v-for="(item, index) in menuList" :key="index"
+      class="p-1 text-gray-300 hover:text-black text-nowrap font-bold text-lg">
+      <RouterLink :to="item.path" :class="{ 'text-black': activeMenuKey === item.key }">
         {{ item.name }}
       </RouterLink>
     </div>

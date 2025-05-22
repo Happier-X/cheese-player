@@ -23,7 +23,7 @@
     </label>
   </div>
 
-  <div class="drawer drawer-end">
+  <!-- <div class="drawer drawer-end">
     <input id="my-drawer" type="checkbox" class="drawer-toggle" />
     <div class="drawer-side">
       <label
@@ -32,10 +32,10 @@
         class="drawer-overlay"
       ></label>
       <div class="bg-base-200 h-70 w-80 p-4">
-        <!-- <SongList :list="playerStore.playQueue"></SongList> -->
+        <SongList :list="playerStore.playQueue"></SongList>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 <script setup lang="ts">
 import {

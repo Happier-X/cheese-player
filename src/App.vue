@@ -1,10 +1,10 @@
 <template>
-  <Layout></Layout>
+  <Layout />
 </template>
 <script setup lang="ts">
-import Layout from "./layout/index.vue";
+import Layout from "@/layout/index.vue";
 import { getCurrentWindow } from "@tauri-apps/api/window";
-import { usePlayerStore } from "./stores/player";
+import { usePlayerStore } from "@/stores/player";
 import { onMounted } from "vue";
 import { Store } from "@tauri-apps/plugin-store";
 

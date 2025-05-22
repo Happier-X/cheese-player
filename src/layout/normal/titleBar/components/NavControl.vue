@@ -1,25 +1,14 @@
 <template>
-  <div
-    class="w-full h-full flex items-center justify-start gap-2"
-    data-tauri-drag-region
-  >
+  <div class="w-full h-full flex items-center justify-start gap-2" data-tauri-drag-region>
     <div class="tooltip tooltip-bottom" data-tip="后退">
-      <button
-        class="btn btn-sm btn-circle btn-ghost"
-        :class="{ 'btn-disabled': !canGoBack }"
-        @click="handleBack"
-      >
+      <Button variant="ghost" size="icon" @click="handleBack">
         <GoBackIcon size="20px"></GoBackIcon>
-      </button>
+      </Button>
     </div>
     <div class="tooltip tooltip-bottom" data-tip="前进">
-      <button
-        class="btn btn-sm btn-circle btn-ghost"
-        :class="{ 'btn-disabled': !canGoForward }"
-        @click="handleForward"
-      >
+      <Button variant="ghost" size="icon" @click="handleForward">
         <GoForwardIcon size="20px"></GoForwardIcon>
-      </button>
+      </Button>
     </div>
   </div>
 </template>
@@ -30,6 +19,8 @@ import {
 } from "@remixicon/vue";
 import { ref, watch } from "vue";
 import { useRouter, useRoute } from "vue-router";
+import { Button } from '@/components/ui/button';
+
 // 路由器对象
 const router = useRouter();
 // 路由对象

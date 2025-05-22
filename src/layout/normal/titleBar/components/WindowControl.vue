@@ -1,31 +1,19 @@
 <template>
-  <div
-    class="w-full h-full flex items-center justify-end gap-2"
-    data-tauri-drag-region
-  >
+  <div class="w-full h-full flex items-center justify-end gap-2" data-tauri-drag-region>
     <div class="tooltip tooltip-bottom" data-tip="最小化">
-      <button class="btn btn-sm btn-circle btn-ghost" @click="handleMinimize">
+      <Button variant="ghost" size="icon" @click="handleMinimize">
         <MinimizeIcon size="20px"></MinimizeIcon>
-      </button>
+      </Button>
     </div>
-    <div
-      class="tooltip tooltip-bottom"
-      :data-tip="isMaximized ? '还原' : '最大化'"
-    >
-      <button
-        class="btn btn-sm btn-circle btn-ghost"
-        @click="handleSwitchScreenSize"
-      >
-        <component
-          :is="isMaximized ? UnMaximizeIcon : MaximizeIcon"
-          size="20px"
-        />
-      </button>
+    <div class="tooltip tooltip-bottom" :data-tip="isMaximized ? '还原' : '最大化'">
+      <Button variant="ghost" size="icon" @click="handleSwitchScreenSize">
+        <component :is="isMaximized ? UnMaximizeIcon : MaximizeIcon" size="20px" />
+      </Button>
     </div>
     <div class="tooltip tooltip-bottom" data-tip="关闭">
-      <button class="btn btn-sm btn-circle btn-ghost" @click="handleClose">
+      <Button variant="ghost" size="icon" @click="handleClose">
         <CloseIcon size="20px"></CloseIcon>
-      </button>
+      </Button>
     </div>
   </div>
 </template>
@@ -38,6 +26,7 @@ import {
 } from "@remixicon/vue";
 import { getCurrentWindow } from "@tauri-apps/api/window";
 import { onMounted, ref } from "vue";
+import { Button } from "@/components/ui/button";
 
 // 窗口对象
 const appWindow = getCurrentWindow();

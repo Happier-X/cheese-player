@@ -1,10 +1,10 @@
 <template>
-  <div class="w-full h-full bg-base-100">
+  <div class="w-full h-full">
     <div class="w-full h-[48px]">
-      <TitleBar/>
+      <TitleBar />
     </div>
     <div class="w-full h-[48px]">
-      <MenuBar></MenuBar>
+      <MenuBar />
     </div>
     <div class="w-full h-[calc(100%-171px)] px-[5%]">
       <RouterView v-slot="{ Component }">
@@ -14,12 +14,12 @@
       </RouterView>
     </div>
     <div class="w-full h-[75px]">
-      <PlayBar></PlayBar>
+      <PlayBar />
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import TitleBar from "./TitleBar/index.vue";
+import TitleBar from "./titleBar/index.vue";
 import MenuBar from "./menBar/index.vue";
 import PlayBar from "./playBar/index.vue";
 </script>
