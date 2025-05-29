@@ -1,6 +1,8 @@
 <template>
-    <div class="w-full h-full flex items-center justify-between">
-        <div>Cheese Player</div>
+    <div
+        data-tauri-drag-region
+        class="w-full h-full flex items-center justify-between">
+        <div></div>
         <div>
             <WindowControls />
         </div>

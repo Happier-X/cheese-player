@@ -9,6 +9,13 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Button: typeof import('primevue/button')['default']
+    Menubar: typeof import('primevue/menubar')['default']
+    MenuBar: typeof import('primevue/menubar')['default']
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
     WindowControls: typeof import('./src/components/layout/WindowControls.vue')['default']
+  }
+  export interface GlobalDirectives {
+    Ripple: typeof import('primevue/ripple')['default']
   }
 }
