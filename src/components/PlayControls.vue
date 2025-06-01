@@ -1,9 +1,9 @@
 <template>
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-3">
         <Button variant="ghost" size="icon">
             <PreviousIcon />
         </Button>
-        <Button variant="outline" size="icon">
+        <Button variant="outline" size="icon" class="scale-110">
             <component :is="PlayIcon" />
         </Button>
         <Button variant="ghost" size="icon">
