@@ -1,18 +1,16 @@
 <template>
-    <div>
+    <div class="flex items-center">
         <Button variant="ghost" @click="handleMinimize">
-            <MinimizeIcon :size="16" />
+            <MinimizeIcon />
         </Button>
         <Button
             class="scale-x-[-1]"
             variant="ghost"
             @click="handleToggleScreenSize">
-            <component
-                :is="isMaximized ? RestoreIcon : MaximizeIcon"
-                :size="16" />
+            <component :is="isMaximized ? RestoreIcon : MaximizeIcon" />
         </Button>
         <Button variant="ghost" @click="handleClose">
-            <CloseIcon :size="16" />
+            <CloseIcon />
         </Button>
     </div>
 </template>

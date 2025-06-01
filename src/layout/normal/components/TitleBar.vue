@@ -7,5 +7,5 @@
     </div>
 </template>
 <script setup lang="ts">
-import WindowControls from '@/components/layout/WindowControls.vue'
+import WindowControls from '@/components/WindowControls.vue'
 </script>

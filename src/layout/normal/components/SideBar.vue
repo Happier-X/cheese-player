@@ -1,6 +1,6 @@
 <template>
     <SidebarProvider :defaultOpen="false">
-        <Sidebar collapsible="icon">
+        <Sidebar collapsible="icon" class="h-[calc(100vh-75px)]!">
             <SidebarHeader>
                 <div class="flex items-center justify-center">
                     <MusicIcon />
