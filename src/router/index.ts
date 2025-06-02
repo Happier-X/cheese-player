@@ -7,19 +7,23 @@ const routes = [
     },
     {
         path: '/home',
-        component: () => import('../views/home/index.vue')
+        component: () => import('@/views/home/index.vue')
     },
     {
         path: '/album',
-        component: () => import('../views/album/index.vue')
+        component: () => import('@/views/album/index.vue')
     },
     {
         path: '/artist',
-        component: () => import('../views/artist/index.vue')
+        component: () => import('@/views/artist/index.vue')
     },
     {
         path: '/playlist',
-        component: () => import('../views/playlist/index.vue')
+        component: () => import('@/views/playlist/index.vue')
+    },
+    {
+        path: '/settings',
+        component: () => import('@/views/settings/index.vue')
     }
 ]
 
