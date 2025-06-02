@@ -1,12 +1,20 @@
 <template>
     <div class="flex items-center gap-3">
-        <Button variant="ghost" size="icon">
+        <Button variant="ghost" size="icon" @click="playerStore.playPrevious">
             <PreviousIcon />
         </Button>
-        <Button variant="outline" size="icon" class="scale-110">
-            <component :is="PlayIcon" />
+        <Button
+            variant="outline"
+            size="icon"
+            class="scale-110"
+            @click="
+                playerStore.isPlaying
+                    ? playerStore.pause()
+                    : playerStore.resume()
+            ">
+            <component :is="playerStore.isPlaying ? PauseIcon : PlayIcon" />
         </Button>
-        <Button variant="ghost" size="icon">
+        <Button variant="ghost" size="icon" @click="playerStore.playNext">
             <NextIcon />
         </Button>
     </div>
@@ -19,4 +27,6 @@ import {
     SkipForward as NextIcon,
     Pause as PauseIcon
 } from 'lucide-vue-next'
+import { usePlayerStore } from '@/stores/player'
+const playerStore = usePlayerStore()
 </script>
