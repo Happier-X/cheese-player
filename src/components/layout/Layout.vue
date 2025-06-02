@@ -6,8 +6,8 @@
     </div>
 </template>
 <script setup lang="ts">
-import Normal from '@/layout/normal/index.vue'
-import Immersive from '@/layout/immersive/index.vue'
+import Normal from '@/components/layout/Normal.vue'
+import Immersive from '@/components/layout/Immersive.vue'
 import { useLayout } from '@/composables/useLayout'
 
 const { isNormal } = useLayout()

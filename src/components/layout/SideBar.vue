@@ -27,7 +27,24 @@
                     </SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>
-            <SidebarFooter></SidebarFooter>
+            <SidebarFooter>
+                <SidebarGroupContent>
+                    <SidebarMenu>
+                        <SidebarMenuItem
+                            v-for="item in bottomMenuList"
+                            :key="item.title">
+                            <SidebarMenuButton asChild>
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    @click="item.action">
+                                    <component :is="item.icon" />
+                                </Button>
+                            </SidebarMenuButton>
+                        </SidebarMenuItem>
+                    </SidebarMenu>
+                </SidebarGroupContent>
+            </SidebarFooter>
         </Sidebar>
     </SidebarProvider>
 </template>
@@ -44,12 +61,14 @@ import {
     SidebarMenuItem,
     SidebarProvider
 } from '@/components/ui/sidebar'
+import { Button } from '@/components/ui/button'
 import {
     Disc3 as AlbumIcon,
     MicVocal as ArtistIcon,
     House as HomeIcon,
     Headphones as MusicIcon,
-    ScrollText as PlaylistIcon
+    ScrollText as PlaylistIcon,
+    Settings as SettingsIcon
 } from 'lucide-vue-next'
 import { useRoute } from 'vue-router'
 const route = useRoute()
@@ -73,6 +92,15 @@ const menuList = [
         title: '歌单',
         icon: PlaylistIcon,
         path: '/playlist'
+    }
+]
+const bottomMenuList = [
+    {
+        title: '设置',
+        icon: SettingsIcon,
+        action: () => {
+            alert('设置功能尚未实现')
+        }
     }
 ]
 </script>
