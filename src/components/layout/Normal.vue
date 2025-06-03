@@ -2,7 +2,7 @@
     <div class="w-full h-full flex flex-col">
         <div class="w-full h-[calc(100%-75px)] flex">
             <SidebarProvider
-                :defaultOpen="false"
+                style="--sidebar-width: 12rem"
                 class="h-[calc(100vh-75px)]! min-h-0!">
                 <Sidebar collapsible="icon" class="h-[calc(100vh-75px)]!">
                     <SidebarHeader>
