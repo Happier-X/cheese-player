@@ -20,6 +20,7 @@
                                         <SidebarMenuButton
                                             asChild
                                             :isActive="item.path === route.path"
+                                            :tooltip="item.title"
                                             class="data-[active=true]:bg-[var(--sidebar-primary)] data-[active=true]:text-[var(--sidebar-primary-foreground)]">
                                             <RouterLink :to="item.path">
                                                 <component :is="item.icon" />
@@ -40,6 +41,7 @@
                                     <SidebarMenuButton
                                         asChild
                                         :isActive="item.path === route.path"
+                                        :tooltip="item.title"
                                         class="data-[active=true]:bg-[var(--sidebar-primary)] data-[active=true]:text-[var(--sidebar-primary-foreground)]">
                                         <RouterLink :to="item.path">
                                             <component :is="item.icon" />
