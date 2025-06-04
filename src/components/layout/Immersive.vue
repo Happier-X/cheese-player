@@ -1,2 +1,4 @@
-<template>沉浸式布局</template>
+<template>
+    <div class="w-full h-full bg-pink-300"></div>
+</template>
 <script setup lang="ts"></script>

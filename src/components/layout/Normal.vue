@@ -73,7 +73,9 @@
         <div
             class="w-full h-[75px] p-3 flex items-center justify-between relative z-99">
             <ProgressBar class="absolute -top-0.75 left-0" />
-            <MusicInfo :current-song-info="playerStore.currentSongInfo" />
+            <MusicInfo
+                :current-song-info="playerStore.currentSongInfo"
+                @click-cover="layoutStore.toggleLayout" />
             <PlayControls />
             <div class="w-full"></div>
         </div>
@@ -106,6 +108,7 @@ import {
 } from 'lucide-vue-next'
 import { useRoute } from 'vue-router'
 import { usePlayerStore } from '@/stores/player'
+import { useLayoutStore } from '@/stores/layout'
 
 const route = useRoute()
 const menuList = [
@@ -138,4 +141,5 @@ const bottomMenuList = [
     }
 ]
 const playerStore = usePlayerStore()
+const layoutStore = useLayoutStore()
 </script>

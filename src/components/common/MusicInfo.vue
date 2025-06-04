@@ -6,7 +6,8 @@
                 currentSongInfo?.cover ??
                 'https://img.daisyui.com/images/profile/demo/1@94.webp'
             "
-            alt="封面" />
+            alt="封面"
+            @click="handleClickCover" />
         <div>
             <div>{{ currentSongInfo?.title ?? '未知歌曲' }}</div>
             <div>
@@ -22,4 +23,9 @@ defineProps({
         type: Object
     }
 })
+const emit = defineEmits(['clickCover'])
+const handleClickCover = () => {
+    console.log('点击封面')
+    emit('clickCover')
+}
 </script>
