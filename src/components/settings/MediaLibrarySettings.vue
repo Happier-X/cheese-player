@@ -140,10 +140,14 @@ onMounted(async () => {
 })
 const isLinked = ref(false)
 const handlePing = async () => {
-    const res: any = await subsonicApi.ping()
-    if (res.status === 'ok') {
-        isLinked.value = true
-    } else {
+    try {
+        const res: any = await subsonicApi.ping()
+        if (res.status === 'ok') {
+            isLinked.value = true
+        } else {
+            isLinked.value = false
+        }
+    } catch (error) {
         isLinked.value = false
     }
 }
