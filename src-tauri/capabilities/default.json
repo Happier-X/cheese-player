@@ -34,6 +34,9 @@
         "store:allow-set",
         "store:allow-save",
         "store:allow-load",
-        "core:window:allow-destroy"
+        "core:window:allow-destroy",
+        "store:default",
+        "store:default",
+        "store:default"
     ]
 }

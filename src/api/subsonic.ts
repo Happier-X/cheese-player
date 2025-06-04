@@ -1,4 +1,4 @@
-import { subsonicRequest } from '../utils/request'
+import { subsonicRequest } from '@/utils/request'
 
 const subsonicApi = {
     /**

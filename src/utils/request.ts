@@ -28,7 +28,7 @@ const request = (
     })
 }
 
-interface mediaLibraryServer {
+interface mediaServer {
     url: string
     username: string
     password: string
@@ -50,28 +50,26 @@ const subsonicRequest = async ({
     options = {},
     getOriginalURL = false
 }: SubsonicRequestOptions) => {
-    const settingStore = await Store.load('store.setting')
-    let mediaLibraryServer: mediaLibraryServer = (await settingStore.get(
-        'mediaLibraryServer'
-    )) || {
+    const settingsStore = await Store.load('store.settings')
+    let mediaServer: mediaServer = (await settingsStore.get('mediaServer')) || {
         url: '',
         username: '',
         password: ''
     }
     const commonParams = {
-        u: mediaLibraryServer?.username || '',
-        t: MD5(`${mediaLibraryServer?.password}cheese`).toString() || '',
+        u: mediaServer?.username || '',
+        t: MD5(`${mediaServer?.password}cheese`).toString() || '',
         s: 'cheese',
         v: '1.16.1',
         c: 'cheese',
         f: 'json'
     } as Record<string, string>
     const subsonicUrl = params
-        ? `${mediaLibraryServer?.url}${url}?${new URLSearchParams({
+        ? `${mediaServer?.url}${url}?${new URLSearchParams({
               ...commonParams,
               ...params
           })}`
-        : `${mediaLibraryServer?.url}${url}?${new URLSearchParams(commonParams)}`
+        : `${mediaServer?.url}${url}?${new URLSearchParams(commonParams)}`
     if (getOriginalURL) {
         return subsonicUrl
     } else {
