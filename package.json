@@ -38,6 +38,7 @@
     "devDependencies": {
         "@tauri-apps/cli": "^2",
         "@types/crypto-js": "^4.2.2",
+        "@types/howler": "^2.2.12",
         "@types/node": "^22.15.29",
         "@vitejs/plugin-vue": "^5.2.1",
         "code-inspector-plugin": "^0.20.12",

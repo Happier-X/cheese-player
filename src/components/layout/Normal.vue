@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full h-full flex flex-col">
+    <div class="w-full h-full flex flex-col overflow-hidden">
         <div class="w-full h-[calc(100%-75px)] flex">
             <SidebarProvider
                 style="--sidebar-width: 12rem"
@@ -70,8 +70,10 @@
                 </div>
             </SidebarProvider>
         </div>
-        <div class="w-full h-[75px] p-3 flex items-center justify-between">
-            <MusicInfo />
+        <div
+            class="w-full h-[75px] p-3 flex items-center justify-between relative z-99">
+            <ProgressBar class="absolute -top-0.75 left-0" />
+            <MusicInfo :current-song-info="playerStore.currentSongInfo" />
             <PlayControls />
             <div class="w-full"></div>
         </div>
@@ -81,6 +83,7 @@
 import MusicInfo from '@/components/common/MusicInfo.vue'
 import PlayControls from '@/components/common/PlayControls.vue'
 import WindowControls from '@/components/common/WindowControls.vue'
+import ProgressBar from '@/components/common/ProgressBar.vue'
 import {
     Sidebar,
     SidebarContent,
@@ -102,6 +105,8 @@ import {
     Settings as SettingsIcon
 } from 'lucide-vue-next'
 import { useRoute } from 'vue-router'
+import { usePlayerStore } from '@/stores/player'
+
 const route = useRoute()
 const menuList = [
     {
@@ -132,4 +137,5 @@ const bottomMenuList = [
         path: '/settings'
     }
 ]
+const playerStore = usePlayerStore()
 </script>
