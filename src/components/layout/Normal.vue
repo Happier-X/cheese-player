@@ -74,10 +74,11 @@
             class="w-full h-[75px] p-3 flex items-center justify-between relative z-99">
             <ProgressBar class="absolute -top-0.75 left-0" />
             <MusicInfo
+                class="w-full"
                 :current-song-info="playerStore.currentSongInfo"
                 @click-cover="layoutStore.toggleLayout" />
-            <PlayControls />
-            <div class="w-full"></div>
+            <PlayControls class="w-full" />
+            <QueueControls class="w-full" />
         </div>
     </div>
 </template>
@@ -109,6 +110,7 @@ import {
 import { useRoute } from 'vue-router'
 import { usePlayerStore } from '@/stores/player'
 import { useLayoutStore } from '@/stores/layout'
+import QueueControls from '@/components/common/QueueControls.vue'
 
 const route = useRoute()
 const menuList = [

@@ -26,7 +26,7 @@
             <ProgressBar class="absolute -top-0.75 left-0" />
             <div class="w-full"></div>
             <PlayControls />
-            <div class="w-full"></div>
+            <QueueControls />
         </div>
     </div>
 </template>
@@ -40,6 +40,7 @@ import { usePlayerStore } from '@/stores/player'
 import Lyric from '@/components/common/Lyric.vue'
 import ProgressBar from '@/components/common/ProgressBar.vue'
 import PlayControls from '@/components/common/PlayControls.vue'
+import QueueControls from '@/components/common/QueueControls.vue'
 
 const layoutStore = useLayoutStore()
 const playerStore = usePlayerStore()
