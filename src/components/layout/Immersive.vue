@@ -25,8 +25,8 @@
             class="w-full h-[75px] p-3 flex items-center justify-between relative z-99">
             <ProgressBar class="absolute -top-0.75 left-0" />
             <div class="w-full"></div>
-            <PlayControls />
-            <QueueControls />
+            <PlayControls class="w-full" />
+            <QueueControls class="w-full" />
         </div>
     </div>
 </template>

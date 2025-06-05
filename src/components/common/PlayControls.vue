@@ -1,5 +1,5 @@
 <template>
-    <div class="flex items-center gap-3">
+    <div class="flex items-center justify-center gap-3">
         <Button variant="ghost" size="icon" @click="playerStore.playPrevious">
             <PreviousIcon />
         </Button>

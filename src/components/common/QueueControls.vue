@@ -1,5 +1,5 @@
 <template>
-    <div class="flex items-center gap-3">
+    <div class="flex items-center justify-end gap-3">
         <Button
             variant="ghost"
             size="icon"
@@ -22,6 +22,9 @@
                     playerStore.playMode === 0 ? OrderPlayIcon : ShufflePlayIcon
                 " />
         </Button>
+        <Button variant="ghost" size="icon">
+            <PlayQueueIcon />
+        </Button>
     </div>
 </template>
 <script setup lang="ts">
@@ -30,7 +33,8 @@ import {
     Repeat as ListLoopIcon,
     Repeat1 as SingleLoopIcon,
     ListOrdered as OrderPlayIcon,
-    Shuffle as ShufflePlayIcon
+    Shuffle as ShufflePlayIcon,
+    ListMusic as PlayQueueIcon
 } from 'lucide-vue-next'
 import { usePlayerStore } from '@/stores/player'
 const playerStore = usePlayerStore()
