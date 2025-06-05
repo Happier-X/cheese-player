@@ -4,5 +4,5 @@
     </div>
 </template>
 <script setup lang="ts">
-import MediaLibrarySettings from '@/components/settings/MediaLibrarySettings.vue'
+import MediaLibrarySettings from '@/views/settings/components/MediaLibrarySettings.vue'
 </script>

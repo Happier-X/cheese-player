@@ -1,11 +1,17 @@
 <template>
-    <div class="w-full h-full overflow-y-auto p-4">
-        <div
-            class="h-12"
-            v-for="item in songList"
-            :key="item.id"
-            @click="handlePlay(item)">
-            <MusicInfo :current-song-info="item" />
+    <div class="w-full h-full p-4">
+        <div class="w-full h-full">
+            <div class="w-7/10 h-full">
+                <div class="w-full h-2/5">
+                    <Carousel />
+                </div>
+                <div class="h-3/5">
+                    <Card class="w-full h-full">
+                        <CardContent>Card Content</CardContent>
+                    </Card>
+                </div>
+            </div>
+            <div class="w-3/10 h-full"></div>
         </div>
     </div>
 </template>
@@ -13,7 +19,8 @@
 import { ref, onMounted } from 'vue'
 import subsonicApi from '@/api/subsonic'
 import { usePlayerStore } from '@/stores/player'
-import MusicInfo from '@/components/common/MusicInfo.vue'
+import Carousel from '@/views/home/components/Carousel.vue'
+import { Card, CardContent } from '@/components/ui/card'
 
 // 歌曲总数
 const total = ref(0)
