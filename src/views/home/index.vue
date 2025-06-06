@@ -3,7 +3,7 @@
         <div class="w-full h-full">
             <div class="w-7/10 h-full">
                 <div class="w-full h-2/5">
-                    <Carousel />
+                    <Carousel :list="songList.slice(0, 10)" />
                 </div>
                 <div class="h-3/5">
                     <Card class="w-full h-full">
