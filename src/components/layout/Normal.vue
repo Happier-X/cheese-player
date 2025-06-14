@@ -71,7 +71,7 @@
             </SidebarProvider>
         </div>
         <div
-            class="w-full h-[75px] p-3 flex items-center justify-between relative z-99">
+            class="w-full h-[75px] p-3 flex items-center justify-between relative z-10">
             <ProgressBar class="absolute -top-0.75 left-0" />
             <MusicInfo
                 class="w-full"

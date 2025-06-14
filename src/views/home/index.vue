@@ -10,9 +10,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import subsonicApi from '@/api/subsonic'
-import { usePlayerStore } from '@/stores/player'
+// import { usePlayerStore } from '@/stores/player'
 import Carousel from '@/views/home/components/Carousel.vue'
-import { Card, CardContent } from '@/components/ui/card'
 
 // 歌曲总数
 const total = ref(0)
@@ -60,13 +59,13 @@ onMounted(() => {
     getSongList()
 })
 // 播放器状态管理
-const playerStore = usePlayerStore()
+// const playerStore = usePlayerStore()
 /**
  * 播放歌曲
  */
-async function handlePlay(item: any) {
-    await playerStore.loadSong(item)
-    playerStore.setPlayQueue(songList.value)
-    playerStore.play()
-}
+// async function handlePlay(item: any) {
+//     await playerStore.loadSong(item)
+//     playerStore.setPlayQueue(songList.value)
+//     playerStore.play()
+// }
 </script>

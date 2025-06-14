@@ -8,7 +8,7 @@
                 class="w-full p-3 rounded-box"
                 v-for="(line, index) in playerStore.lyricLines"
                 :key="index"
-                :ref="(el) => setRef(el, index)">
+                :ref="(el) => setRef(el as HTMLElement, index)">
                 <div
                     class="w-full text-center text-2xl"
                     :class="{

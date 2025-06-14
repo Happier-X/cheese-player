@@ -38,9 +38,15 @@ import {
 } from '@/components/ui/carousel'
 import Autoplay from 'embla-carousel-autoplay'
 
+interface CarouselItem {
+    cover: string
+    [key: string]: any
+}
+
 defineProps({
     list: {
-        type: Array
+        type: Array as () => CarouselItem[],
+        required: true
     }
 })
 </script>

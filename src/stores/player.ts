@@ -210,7 +210,7 @@ export const usePlayerStore = defineStore('player', () => {
     async function getLyric(url: string) {
         const response = await fetch(url)
         const webStream = response.body
-        const res = await parseWebStream(webStream)
+        const res = await parseWebStream(webStream as any)
         if (
             res &&
             res.common &&
