@@ -1,17 +1,9 @@
 <template>
     <div class="w-full h-full p-4">
         <div class="w-full h-full">
-            <div class="w-7/10 h-full">
-                <div class="w-full h-2/5">
-                    <Carousel :list="songList.slice(0, 10)" />
-                </div>
-                <div class="h-3/5">
-                    <Card class="w-full h-full">
-                        <CardContent>Card Content</CardContent>
-                    </Card>
-                </div>
+            <div class="w-full">
+                <Carousel :list="songList.slice(0, 10)" />
             </div>
-            <div class="w-3/10 h-full"></div>
         </div>
     </div>
 </template>
