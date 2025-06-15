@@ -1,16 +1,14 @@
 <template>
     <div class="w-full h-full p-4">
-        <div class="w-full h-full">
-            <div class="w-full">
-                <Carousel :list="songList.slice(0, 10)" />
-            </div>
+        <div class="w-full h-full flex flex-col gap-4">
+            <Carousel :list="songList.slice(0, 50)" />
+            <div class="flex-1 bg-pink-200">123</div>
         </div>
     </div>
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import subsonicApi from '@/api/subsonic'
-// import { usePlayerStore } from '@/stores/player'
 import Carousel from '@/views/home/components/Carousel.vue'
 
 // 歌曲总数
@@ -58,14 +56,4 @@ const getSongList = async () => {
 onMounted(() => {
     getSongList()
 })
-// 播放器状态管理
-// const playerStore = usePlayerStore()
-/**
- * 播放歌曲
- */
-// async function handlePlay(item: any) {
-//     await playerStore.loadSong(item)
-//     playerStore.setPlayQueue(songList.value)
-//     playerStore.play()
-// }
 </script>

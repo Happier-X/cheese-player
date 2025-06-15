@@ -1,42 +1,20 @@
 <template>
-    <div class="w-full h-full flex flex-col overflow-hidden">
-        <div class="w-full h-[calc(100%-75px)] flex">
-            <SidebarProvider
-                style="--sidebar-width: 12rem"
-                class="h-[calc(100vh-75px)]! min-h-0!">
-                <Sidebar collapsible="icon" class="h-[calc(100vh-75px)]!">
-                    <SidebarHeader>
-                        <div class="flex items-center justify-center">
-                            <MusicIcon />
-                        </div>
-                    </SidebarHeader>
-                    <SidebarContent>
-                        <SidebarGroup>
-                            <SidebarGroupContent>
-                                <SidebarMenu>
-                                    <SidebarMenuItem
-                                        v-for="item in menuList"
-                                        :key="item.title">
-                                        <SidebarMenuButton
-                                            asChild
-                                            :isActive="item.path === route.path"
-                                            :tooltip="item.title"
-                                            class="data-[active=true]:bg-[var(--sidebar-primary)] data-[active=true]:text-[var(--sidebar-primary-foreground)]">
-                                            <RouterLink :to="item.path">
-                                                <component :is="item.icon" />
-                                                <span>{{ item.title }}</span>
-                                            </RouterLink>
-                                        </SidebarMenuButton>
-                                    </SidebarMenuItem>
-                                </SidebarMenu>
-                            </SidebarGroupContent>
-                        </SidebarGroup>
-                    </SidebarContent>
-                    <SidebarFooter>
+    <div class="w-full h-full overflow-hidden">
+        <SidebarProvider
+            style="--sidebar-width: 12rem"
+            class="h-[calc(100vh-75px)]! min-h-0!">
+            <Sidebar collapsible="icon" class="h-[calc(100vh-75px)]!">
+                <SidebarHeader>
+                    <div class="flex items-center justify-center">
+                        <MusicIcon />
+                    </div>
+                </SidebarHeader>
+                <SidebarContent>
+                    <SidebarGroup>
                         <SidebarGroupContent>
                             <SidebarMenu>
                                 <SidebarMenuItem
-                                    v-for="item in bottomMenuList"
+                                    v-for="item in menuList"
                                     :key="item.title">
                                     <SidebarMenuButton
                                         asChild
@@ -51,25 +29,45 @@
                                 </SidebarMenuItem>
                             </SidebarMenu>
                         </SidebarGroupContent>
-                    </SidebarFooter>
-                </Sidebar>
-                <div class="flex-1 flex flex-col">
-                    <div
-                        data-tauri-drag-region
-                        class="flex items-center justify-between border-b-1">
-                        <div></div>
-                        <WindowControls />
-                    </div>
-                    <div class="flex-1 overflow-hidden">
-                        <RouterView v-slot="{ Component }">
-                            <KeepAlive>
-                                <component :is="Component"></component>
-                            </KeepAlive>
-                        </RouterView>
-                    </div>
+                    </SidebarGroup>
+                </SidebarContent>
+                <SidebarFooter>
+                    <SidebarGroupContent>
+                        <SidebarMenu>
+                            <SidebarMenuItem
+                                v-for="item in bottomMenuList"
+                                :key="item.title">
+                                <SidebarMenuButton
+                                    asChild
+                                    :isActive="item.path === route.path"
+                                    :tooltip="item.title"
+                                    class="data-[active=true]:bg-[var(--sidebar-primary)] data-[active=true]:text-[var(--sidebar-primary-foreground)]">
+                                    <RouterLink :to="item.path">
+                                        <component :is="item.icon" />
+                                        <span>{{ item.title }}</span>
+                                    </RouterLink>
+                                </SidebarMenuButton>
+                            </SidebarMenuItem>
+                        </SidebarMenu>
+                    </SidebarGroupContent>
+                </SidebarFooter>
+            </Sidebar>
+            <div class="w-[calc(100vw-12rem)] flex flex-col">
+                <div
+                    data-tauri-drag-region
+                    class="flex items-center justify-between border-b-1">
+                    <div></div>
+                    <WindowControls />
                 </div>
-            </SidebarProvider>
-        </div>
+                <div class="flex-1 overflow-hidden">
+                    <RouterView v-slot="{ Component }">
+                        <KeepAlive>
+                            <component :is="Component"></component>
+                        </KeepAlive>
+                    </RouterView>
+                </div>
+            </div>
+        </SidebarProvider>
         <div
             class="w-full h-[75px] p-3 flex items-center justify-between relative z-10">
             <ProgressBar class="absolute -top-0.75 left-0" />

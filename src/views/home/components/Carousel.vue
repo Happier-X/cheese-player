@@ -1,6 +1,5 @@
 <template>
     <Carousel
-        class="w-full h-full [&>div]:h-full!"
         :opts="{
             align: 'start',
             loop: true
@@ -10,7 +9,7 @@
                 delay: 2000
             })
         ]">
-        <CarouselContent class="h-full">
+        <CarouselContent>
             <CarouselItem
                 v-for="(item, index) in list"
                 :key="index"
@@ -20,13 +19,12 @@
                         <img
                             class="aspect-square w-full rounded-xl"
                             :src="item.cover"
-                            alt="" />
+                            alt=""
+                            @click="handlePlay(item)" />
                     </CardContent>
                 </Card>
             </CarouselItem>
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
     </Carousel>
 </template>
 <script setup lang="ts">
@@ -37,16 +35,27 @@ import {
     CarouselItem
 } from '@/components/ui/carousel'
 import Autoplay from 'embla-carousel-autoplay'
+import { usePlayerStore } from '@/stores/player'
 
 interface CarouselItem {
     cover: string
     [key: string]: any
 }
 
-defineProps({
+const props = defineProps({
     list: {
         type: Array as () => CarouselItem[],
         required: true
     }
 })
+// 播放器状态管理
+const playerStore = usePlayerStore()
+/**
+ * 播放歌曲
+ */
+async function handlePlay(item: any) {
+    await playerStore.loadSong(item)
+    playerStore.setPlayQueue(props.list)
+    playerStore.play()
+}
 </script>
