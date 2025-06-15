@@ -3,7 +3,7 @@
         class="w-full h-full flex items-center gap-2"
         :class="{ 'flex-col items-center': column }">
         <img
-            class="aspect-square rounded-lg"
+            class="aspect-square rounded-lg shadow-sm"
             :class="{
                 'h-full': !column,
                 'w-3/5 mx-auto': column

@@ -14,21 +14,24 @@
                 v-for="(item, index) in list"
                 :key="index"
                 class="basis-1/5">
-                <Card class="p-0">
-                    <CardContent class="p-0">
-                        <img
-                            class="aspect-square w-full rounded-xl"
-                            :src="item.cover"
-                            alt=""
-                            @click="handlePlay(item)" />
-                    </CardContent>
-                </Card>
+                <img
+                    class="aspect-square w-full rounded-lg shadow-sm"
+                    :src="item.cover"
+                    alt=""
+                    @click="handlePlay(item)" />
+                <div class="w-full">
+                    <div class="font-semibold">
+                        {{ item?.title ?? '未知歌曲' }}
+                    </div>
+                    <div class="text-sm text-gray-500">
+                        {{ item?.artist ?? '未知艺术家' }}
+                    </div>
+                </div>
             </CarouselItem>
         </CarouselContent>
     </Carousel>
 </template>
 <script setup lang="ts">
-import { Card, CardContent } from '@/components/ui/card'
 import {
     Carousel,
     CarouselContent,
