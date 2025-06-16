@@ -14,17 +14,19 @@
                 v-for="(item, index) in list"
                 :key="index"
                 class="basis-1/5">
-                <img
-                    class="aspect-square w-full rounded-lg shadow-sm"
-                    :src="item.cover"
-                    alt=""
-                    @click="handlePlay(item)" />
-                <div class="w-full">
-                    <div class="font-semibold">
-                        {{ item?.title ?? '未知歌曲' }}
-                    </div>
-                    <div class="text-sm text-gray-500">
-                        {{ item?.artist ?? '未知艺术家' }}
+                <div class="flex flex-col items-center gap-3">
+                    <img
+                        class="aspect-square w-full rounded-xl shadow-sm object-cover"
+                        :src="item.cover"
+                        alt=""
+                        @click="handlePlay(item)" />
+                    <div class="w-full">
+                        <div class="font-medium line-clamp-1">
+                            {{ item?.title ?? '未知歌曲' }}
+                        </div>
+                        <div class="text-sm text-muted-foreground line-clamp-1">
+                            {{ item?.artist ?? '未知艺术家' }}
+                        </div>
                     </div>
                 </div>
             </CarouselItem>
