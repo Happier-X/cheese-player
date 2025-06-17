@@ -1,21 +1,31 @@
 <template>
-    <div class="flex items-center">
-        <Button variant="ghost" @click="handleMinimize">
-            <MinimizeIcon />
-        </Button>
-        <Button
-            class="scale-x-[-1]"
-            variant="ghost"
+    <NFlex :wrap="false" align="center" :size="0" class="h-42px">
+        <NButton
+            quaternary
+            :focusable="false"
+            class="h-42px"
+            @click="handleMinimize">
+            <MinimizeIcon :size="16" />
+        </NButton>
+        <NButton
+            quaternary
+            :focusable="false"
+            class="scale-x-[-1] h-42px"
             @click="handleToggleScreenSize">
-            <component :is="isMaximized ? RestoreIcon : MaximizeIcon" />
-        </Button>
-        <Button variant="ghost" @click="handleClose">
-            <CloseIcon />
-        </Button>
-    </div>
+            <component
+                :is="isMaximized ? RestoreIcon : MaximizeIcon"
+                :size="16" />
+        </NButton>
+        <NButton
+            quaternary
+            :focusable="false"
+            class="h-42px"
+            @click="handleClose">
+            <CloseIcon :size="16" />
+        </NButton>
+    </NFlex>
 </template>
 <script setup lang="ts">
-import { Button } from '@/components/ui/button'
 import {
     Minus as MinimizeIcon,
     Square as MaximizeIcon,

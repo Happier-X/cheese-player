@@ -2,19 +2,37 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { codeInspectorPlugin } from 'code-inspector-plugin'
 import path from 'path'
-import tailwindcss from '@tailwindcss/vite'
+import AutoImport from 'unplugin-auto-import/vite'
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
+import Components from 'unplugin-vue-components/vite'
+import UnoCSS from 'unocss/vite'
 
 const host = process.env.TAURI_DEV_HOST
 
-// https://vitejs.dev/config/
 export default defineConfig(async () => ({
     plugins: [
         vue(),
+        AutoImport({
+            imports: [
+                'vue',
+                {
+                    'naive-ui': [
+                        'useDialog',
+                        'useMessage',
+                        'useNotification',
+                        'useLoadingBar'
+                    ]
+                }
+            ]
+        }),
+        UnoCSS(),
+        Components({
+            resolvers: [NaiveUiResolver()]
+        }),
         codeInspectorPlugin({
             bundler: 'vite',
             hotKeys: ['ctrlKey']
-        }),
-        tailwindcss()
+        })
     ],
     resolve: {
         alias: {

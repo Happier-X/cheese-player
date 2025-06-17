@@ -1,5 +1,5 @@
 <template>
-    <!-- <div class="w-full h-full flex flex-col overflow-hidden">
+    <div class="w-full h-full flex flex-col overflow-hidden">
         <div data-tauri-drag-region class="flex items-center justify-between">
             <div></div>
             <div class="flex items-center">
@@ -28,7 +28,7 @@
             <PlayControls class="w-full" />
             <QueueControls class="w-full" />
         </div>
-    </div> -->
+    </div>
 </template>
 <script setup lang="ts">
 import WindowControls from '@/components/common/WindowControls.vue'

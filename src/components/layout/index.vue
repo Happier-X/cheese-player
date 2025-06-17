@@ -1,9 +1,7 @@
 <template>
-    <div class="w-screen h-screen">
-        <keep-alive>
-            <component :is="layoutStore.isNormal ? Normal : Immersive" />
-        </keep-alive>
-    </div>
+    <keep-alive>
+        <component :is="layoutStore.isNormal ? Normal : Immersive" />
+    </keep-alive>
 </template>
 <script setup lang="ts">
 import Normal from '@/components/layout/Normal.vue'

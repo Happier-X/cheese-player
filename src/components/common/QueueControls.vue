@@ -1,34 +1,35 @@
 <template>
-    <div class="flex items-center justify-end gap-3">
-        <Button
-            variant="ghost"
-            size="icon"
+    <NFlex align="center" justify="end">
+        <NButton
+            quaternary
+            circle
+            :focusable="false"
             @click="
                 playerStore.setLoopMode(playerStore.loopMode === 0 ? 1 : 0)
             ">
             <component
-                :is="
-                    playerStore.loopMode === 0 ? ListLoopIcon : SingleLoopIcon
-                " />
-        </Button>
-        <Button
-            variant="ghost"
-            size="icon"
+                :is="playerStore.loopMode === 0 ? ListLoopIcon : SingleLoopIcon"
+                :size="18" />
+        </NButton>
+        <NButton
+            quaternary
+            circle
+            :focusable="false"
             @click="
                 playerStore.setPlayMode(playerStore.playMode === 0 ? 1 : 0)
             ">
             <component
                 :is="
                     playerStore.playMode === 0 ? OrderPlayIcon : ShufflePlayIcon
-                " />
-        </Button>
-        <Button variant="ghost" size="icon">
-            <PlayQueueIcon />
-        </Button>
-    </div>
+                "
+                :size="18" />
+        </NButton>
+        <NButton quaternary circle :focusable="false">
+            <PlayQueueIcon :size="18" />
+        </NButton>
+    </NFlex>
 </template>
 <script setup lang="ts">
-import { Button } from '@/components/ui/button'
 import {
     Repeat as ListLoopIcon,
     Repeat1 as SingleLoopIcon,

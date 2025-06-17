@@ -1,7 +1,5 @@
 <template>
-    <div
-        class="w-full h-full flex items-center gap-2"
-        :class="{ 'flex-col items-center': column }">
+    <NFlex align="center" :vertical="column" class="w-full h-full">
         <img
             class="aspect-square rounded-lg shadow-sm"
             :class="{
@@ -23,7 +21,7 @@
                 {{ currentSongInfo?.album ?? '未知专辑' }}
             </div>
         </div>
-    </div>
+    </NFlex>
 </template>
 <script setup lang="ts">
 defineProps({
