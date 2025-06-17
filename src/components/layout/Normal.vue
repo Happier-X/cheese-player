@@ -8,13 +8,19 @@
                         v-model:value="activeKey"
                         mode="horizontal"
                         :options="menuOptions" />
+                    <NButton
+                        text
+                        :focusable="false"
+                        @click="handleOpenSettings">
+                        <SettingsIcon :size="16" />
+                    </NButton>
                     <WindowControls />
                 </NFlex>
             </NLayoutHeader>
             <NLayoutContent
                 position="absolute"
                 class="top-43px! bottom-75px!"
-                content-class="px-3">
+                content-class="px-5">
                 <RouterView v-slot="{ Component }">
                     <KeepAlive>
                         <component :is="Component"></component>
@@ -40,19 +46,19 @@
     </div>
 </template>
 <script setup lang="ts">
+import MusicInfo from '@/components/common/MusicInfo.vue'
+import PlayControls from '@/components/common/PlayControls.vue'
+import ProgressBar from '@/components/common/ProgressBar.vue'
+import QueueControls from '@/components/common/QueueControls.vue'
 import WindowControls from '@/components/common/WindowControls.vue'
 import { useLayoutStore } from '@/stores/layout'
 import { usePlayerStore } from '@/stores/player'
 import { Settings as SettingsIcon } from 'lucide-vue-next'
 import type { MenuOption } from 'naive-ui'
 import { h } from 'vue'
-import { RouterLink, useRoute } from 'vue-router'
-import ProgressBar from '@/components/common/ProgressBar.vue'
-import MusicInfo from '@/components/common/MusicInfo.vue'
-import PlayControls from '@/components/common/PlayControls.vue'
-import QueueControls from '@/components/common/QueueControls.vue'
+import { RouterLink, useRouter } from 'vue-router'
 
-const route = useRoute()
+const router = useRouter()
 const menuOptions: MenuOption[] = [
     {
         label: () => h(RouterLink, { to: '/home' }, { default: () => '首页' }),
@@ -77,13 +83,11 @@ const menuOptions: MenuOption[] = [
         // icon: renderIcon(PlaylistIcon)
     }
 ]
-const bottomMenuList = [
-    {
-        title: '设置',
-        icon: SettingsIcon,
+const handleOpenSettings = () => {
+    router.push({
         path: '/settings'
-    }
-]
+    })
+}
 const playerStore = usePlayerStore()
 const layoutStore = useLayoutStore()
 </script>

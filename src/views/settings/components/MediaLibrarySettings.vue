@@ -1,7 +1,6 @@
 <template>
-    <div class="flex flex-col gap-4">
-        <div
-            class="text-lg font-bold border-l-[var(--foreground)] border-l-3 pl-3">
+    <!-- <div class="flex flex-col gap-4">
+        <div class="text-lg font-bold border-l-[var(--foreground)] border-l-3 pl-3">
             媒体库设置
         </div>
         <Dialog>
@@ -9,44 +8,32 @@
                 <CardHeader class="flex-1">
                     <CardTitle as-child>媒体服务</CardTitle>
                     <CardDescription class="flex items-center gap-1">
-                        <component
-                            :is="isLinked ? LinkIcon : UnlinkIcon"
-                            :size="14" />
+                        <component :is="isLinked ? LinkIcon : UnlinkIcon" :size="14" />
                         {{ isLinked ? '已连接' : '未连接' }}
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
                     <DialogTrigger as-child>
-                        <Button
-                            size="icon"
-                            variant="ghost"
-                            @click="handleOpenMediaServerDialog">
+                        <Button size="icon" variant="ghost" @click="handleOpenMediaServerDialog">
                             <EditIcon />
                         </Button>
                     </DialogTrigger>
                 </CardContent>
             </Card>
-            <DialogContent
-                description="配置媒体服务器的连接信息，包括服务器地址、用户名和密码">
+            <DialogContent description="配置媒体服务器的连接信息，包括服务器地址、用户名和密码">
                 <DialogHeader>
                     <DialogTitle>媒体服务</DialogTitle>
                     <DialogDescription>
                         请填写您的媒体服务器连接信息
                     </DialogDescription>
                 </DialogHeader>
-                <form
-                    id="mediaServerForm"
-                    autocomplete="off"
-                    @submit="handleMediaServerFormSubmit"
+                <form id="mediaServerForm" autocomplete="off" @submit="handleMediaServerFormSubmit"
                     class="flex flex-col gap-4">
                     <FormField v-slot="{ componentField }" name="url">
                         <FormItem>
                             <FormLabel>服务地址</FormLabel>
                             <FormControl>
-                                <Input
-                                    type="text"
-                                    placeholder="请输入服务地址"
-                                    v-bind="componentField" />
+                                <Input type="text" placeholder="请输入服务地址" v-bind="componentField" />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -55,10 +42,7 @@
                         <FormItem>
                             <FormLabel>用户名</FormLabel>
                             <FormControl>
-                                <Input
-                                    type="text"
-                                    placeholder="请输入用户名"
-                                    v-bind="componentField" />
+                                <Input type="text" placeholder="请输入用户名" v-bind="componentField" />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -67,10 +51,7 @@
                         <FormItem>
                             <FormLabel>密码</FormLabel>
                             <FormControl>
-                                <Input
-                                    type="password"
-                                    placeholder="请输入密码"
-                                    v-bind="componentField" />
+                                <Input type="password" placeholder="请输入密码" v-bind="componentField" />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -88,7 +69,31 @@
                 </DialogFooter>
             </DialogContent>
         </Dialog>
-    </div>
+    </div> -->
+    <n-list hoverable clickable bordered>
+        <n-list-item>媒体服务</n-list-item>
+        <n-list-item>
+            <n-thing title="他在时间门外" content-style="margin-top: 10px;">
+                <template #description>
+                    <n-space size="small" style="margin-top: 4px">
+                        <n-tag :bordered="false" type="info" size="small">
+                            环形公路
+                        </n-tag>
+                        <n-tag :bordered="false" type="info" size="small">
+                            潜水艇司机
+                        </n-tag>
+                    </n-space>
+                </template>
+                最新的打印机
+                <br />
+                复制着彩色傀儡
+                <br />
+                早上好我的罐头先生
+                <br />
+                让他带你去被工厂敲击
+            </n-thing>
+        </n-list-item>
+    </n-list>
 </template>
 <script setup lang="ts">
 import subsonicApi from '@/api/subsonic'

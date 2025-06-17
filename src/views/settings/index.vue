@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full h-full overflow-y-auto p-4">
+    <div class="w-full h-full">
         <MediaLibrarySettings />
     </div>
 </template>
