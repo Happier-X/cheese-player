@@ -3,7 +3,7 @@
         <NGi v-for="(item, index) in list" :key="index">
             <NFlex vertical align="center">
                 <NAvatar
-                    class="size-full shadow-sm"
+                    class="size-full shadow-md"
                     round
                     :src="item.cover"
                     @click="handlePlay(item)" />

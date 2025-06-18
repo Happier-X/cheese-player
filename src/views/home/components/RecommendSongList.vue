@@ -3,7 +3,7 @@
         <NGi v-for="(item, index) in list" :key="index">
             <NFlex vertical>
                 <NImage
-                    class="aspect-square rounded-xl shadow-sm"
+                    class="aspect-square rounded-xl shadow-md"
                     preview-disabled
                     object-fit="cover"
                     :src="item.cover"
