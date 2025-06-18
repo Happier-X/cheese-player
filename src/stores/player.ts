@@ -31,8 +31,6 @@ export const usePlayerStore = defineStore('player', () => {
     const currentLyricLine = ref(0)
     // 歌词数组
     const lyricLines: any = ref([])
-    // 进度百分比
-    const progress = ref(0)
     // 歌词解析器
     let lrc = new Lyric({
         onPlay: (line) => {
@@ -74,8 +72,6 @@ export const usePlayerStore = defineStore('player', () => {
             // 获取当前播放位置
             const seek = sound.value.seek() || 0
             currentTime.value = seek
-            // 计算进度百分比
-            progress.value = (seek / (sound.value.duration() || 1)) * 100 || 0
             lrc.play(seek * 1000)
             requestAnimationFrame(step)
         }
@@ -85,7 +81,6 @@ export const usePlayerStore = defineStore('player', () => {
      */
     async function loadSong(song: any) {
         currentTime.value = 0
-        progress.value = 0
         currentSongInfo.value = song
         sound.value?.unload()
         try {
@@ -192,12 +187,10 @@ export const usePlayerStore = defineStore('player', () => {
     /**
      * 设置播放进度
      */
-    function seek(percent: number) {
+    function seek(time: number) {
         if (sound.value) {
-            const time = (sound.value.duration() || 0) * (percent / 100)
             sound.value.seek(time)
             currentTime.value = time
-            progress.value = percent
             if (sound.value.playing()) {
                 requestAnimationFrame(step)
             }
@@ -250,7 +243,6 @@ export const usePlayerStore = defineStore('player', () => {
         setPlayMode,
         duration,
         currentTime,
-        progress,
         seek,
         currentLyricLine,
         lyricLines,

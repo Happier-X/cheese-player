@@ -20,7 +20,7 @@
             <NLayoutContent
                 position="absolute"
                 class="top-43px! bottom-75px!"
-                content-class="px-5"
+                content-class="px-5 pb-5"
                 :native-scrollbar="false">
                 <RouterView v-slot="{ Component }">
                     <KeepAlive>
@@ -33,8 +33,8 @@
                     align="center"
                     justify="between"
                     :wrap="false"
-                    class="h-[75px] p-3">
-                    <ProgressBar class="absolute -top-0.75 left-0" />
+                    class="h-[75px] p-3 relative">
+                    <ProgressBar class="absolute -top-9px left-0" />
                     <MusicInfo
                         class="w-full"
                         :current-song-info="playerStore.currentSongInfo"
