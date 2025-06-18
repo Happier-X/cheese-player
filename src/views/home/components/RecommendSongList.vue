@@ -1,45 +1,28 @@
 <template>
-    <Carousel
-        :opts="{
-            align: 'start',
-            loop: true
-        }"
-        :plugins="[
-            Autoplay({
-                delay: 2000
-            })
-        ]">
-        <CarouselContent>
-            <CarouselItem
-                v-for="(item, index) in list"
-                :key="index"
-                class="basis-1/5">
-                <div class="flex flex-col items-center gap-3">
-                    <img
-                        class="aspect-square w-full rounded-xl shadow-sm object-cover"
-                        :src="item.cover"
-                        alt=""
-                        @click="handlePlay(item)" />
-                    <div class="w-full">
-                        <div class="font-medium line-clamp-1">
-                            {{ item?.title ?? '未知歌曲' }}
-                        </div>
-                        <div class="text-sm text-muted-foreground line-clamp-1">
-                            {{ item?.artist ?? '未知艺术家' }}
-                        </div>
-                    </div>
-                </div>
-            </CarouselItem>
-        </CarouselContent>
-    </Carousel>
+    <NGrid x-gap="20" y-gap="20" :cols="7" collapsed :collapsed-rows="2">
+        <NGi v-for="(item, index) in list" :key="index">
+            <NFlex vertical>
+                <NImage
+                    class="aspect-square rounded-xl shadow-sm"
+                    preview-disabled
+                    object-fit="cover"
+                    :src="item.cover"
+                    :alt="item.title"
+                    @click="handlePlay(item)" />
+                <NFlex vertical :size="0">
+                    <NText strong class="font-size-4 line-clamp-1">
+                        {{ item?.title ?? '未知歌曲' }}
+                    </NText>
+                    <NText :depth="3" class="line-clamp-1">
+                        {{ item?.artist ?? '未知艺术家' }}
+                    </NText>
+                </NFlex>
+            </NFlex>
+        </NGi>
+    </NGrid>
 </template>
 <script setup lang="ts">
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem
-} from '@/components/ui/carousel'
-import Autoplay from 'embla-carousel-autoplay'
+import { CarouselItem } from '@/components/ui/carousel'
 import { usePlayerStore } from '@/stores/player'
 
 interface CarouselItem {

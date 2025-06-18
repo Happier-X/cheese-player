@@ -1,38 +1,34 @@
 <template>
-    <div class="w-full h-full p-4 overflow-hidden">
-        <div
-            class="w-full h-full flex flex-col gap-4 overflow-y-scroll scrollbar-hide">
-            <div class="flex flex-col gap-4">
-                <div class="flex items-center justify-between">
-                    <span class="text-2xl font-bold">推荐歌曲</span>
-                    <Button variant="ghost">查看更多</Button>
-                </div>
-                <RecommendSongList :list="songList" />
-            </div>
-            <div class="flex flex-col gap-4">
-                <div class="flex items-center justify-between">
-                    <span class="text-2xl font-bold">推荐艺术家</span>
-                    <Button variant="ghost">查看更多</Button>
-                </div>
-                <RecommendArtistList :list="songList" />
-            </div>
-            <div class="flex flex-col gap-4">
-                <div class="flex items-center justify-between">
-                    <span class="text-2xl font-bold">推荐专辑</span>
-                    <Button variant="ghost">查看更多</Button>
-                </div>
-                <!-- <Carousel :list="songList" /> -->
-            </div>
-        </div>
-    </div>
+    <NFlex vertical>
+        <NFlex vertical :size="0">
+            <NFlex justify="space-between" align="center">
+                <NH3 prefix="bar">推荐歌曲</NH3>
+                <NButton text :focusable="false">查看更多</NButton>
+            </NFlex>
+            <RecommendSongList :list="songList" />
+        </NFlex>
+        <NFlex vertical :size="0" class="pt-5">
+            <NFlex justify="space-between" align="center">
+                <NH3 prefix="bar">推荐艺术家</NH3>
+                <NButton text :focusable="false">查看更多</NButton>
+            </NFlex>
+            <RecommendArtistList :list="songList" />
+        </NFlex>
+        <NFlex vertical :size="0" class="pt-5">
+            <NFlex justify="space-between" align="center">
+                <NH3 prefix="bar">推荐专辑</NH3>
+                <NButton text :focusable="false">查看更多</NButton>
+            </NFlex>
+            <RecommendSongList :list="songList" />
+        </NFlex>
+    </NFlex>
 </template>
 
 <script setup lang="ts">
 import subsonicApi from '@/api/subsonic'
-import { onMounted, ref } from 'vue'
-import { Button } from '@/components/ui/button'
-import RecommendSongList from '@/views/home/components/RecommendSongList.vue'
 import RecommendArtistList from '@/views/home/components/RecommendArtistList.vue'
+import RecommendSongList from '@/views/home/components/RecommendSongList.vue'
+import { onMounted, ref } from 'vue'
 
 // 歌曲总数
 const total = ref(0)

@@ -20,14 +20,15 @@
             <NLayoutContent
                 position="absolute"
                 class="top-43px! bottom-75px!"
-                content-class="px-5">
+                content-class="px-5"
+                :native-scrollbar="false">
                 <RouterView v-slot="{ Component }">
                     <KeepAlive>
                         <component :is="Component"></component>
                     </KeepAlive>
                 </RouterView>
             </NLayoutContent>
-            <NLayoutFooter position="absolute">
+            <NLayoutFooter position="absolute" class="bg-[unset]">
                 <NFlex
                     align="center"
                     justify="between"
