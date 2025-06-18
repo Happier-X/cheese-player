@@ -3,11 +3,23 @@
         <NLayout position="absolute">
             <NLayoutHeader bordered data-tauri-drag-region>
                 <NFlex align="center" justify="space-between" :wrap="false">
+                    <img
+                        class="aspect-square h-42px p-1.5"
+                        src="@/assets/logo.png"
+                        alt="" />
                     <NMenu
                         data-tauri-drag-region
                         v-model:value="activeMenuKey"
                         mode="horizontal"
                         :options="menuOptions" />
+                    <NInput
+                        class="w-60!"
+                        size="small"
+                        placeholder="请输入搜索内容">
+                        <template #suffix>
+                            <SearchIcon :size="16" color="#c2c2c2" />
+                        </template>
+                    </NInput>
                     <NButton
                         text
                         :focusable="false"
@@ -20,7 +32,7 @@
             <NLayoutContent
                 position="absolute"
                 class="top-43px! bottom-75px!"
-                content-class="px-5 pb-5"
+                content-class="px-1/10 pb-5"
                 :native-scrollbar="false">
                 <RouterView v-slot="{ Component }">
                     <KeepAlive>
@@ -54,8 +66,8 @@ import QueueControls from '@/components/common/QueueControls.vue'
 import WindowControls from '@/components/common/WindowControls.vue'
 import { useLayoutStore } from '@/stores/layout'
 import { usePlayerStore } from '@/stores/player'
-import { Settings as SettingsIcon } from 'lucide-vue-next'
-import type { MenuOption } from 'naive-ui'
+import { Search as SearchIcon, Settings as SettingsIcon } from 'lucide-vue-next'
+import { type MenuOption } from 'naive-ui'
 import { h, ref, watch } from 'vue'
 import { RouterLink, useRouter, useRoute } from 'vue-router'
 
