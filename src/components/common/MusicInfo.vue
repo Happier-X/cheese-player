@@ -7,6 +7,7 @@
                 'h-full': !column,
                 'w-3/5 mx-auto': column
             }"
+            object-fit="cover"
             :src="
                 currentSongInfo?.cover ??
                 'https://img.daisyui.com/images/profile/demo/1@94.webp'
