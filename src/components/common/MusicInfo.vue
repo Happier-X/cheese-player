@@ -1,7 +1,8 @@
 <template>
     <NFlex align="center" :vertical="column" class="w-full h-full">
-        <img
-            class="aspect-square rounded-lg shadow-sm"
+        <NImage
+            class="aspect-square rounded-xl shadow-sm"
+            preview-disabled
             :class="{
                 'h-full': !column,
                 'w-3/5 mx-auto': column
@@ -12,15 +13,15 @@
             "
             alt="封面"
             @click="handleClickCover" />
-        <div :class="{ 'text-center w-full': column }">
-            <div class="font-semibold">
+        <NFlex vertical :size="0" :class="{ 'text-center w-full': column }">
+            <NText strong class="font-size-4 line-clamp-1">
                 {{ currentSongInfo?.title ?? '未知歌曲' }}
-            </div>
-            <div class="text-sm text-gray-500">
+            </NText>
+            <NText :depth="3" class="line-clamp-1">
                 {{ currentSongInfo?.artist ?? '未知艺术家' }} -
                 {{ currentSongInfo?.album ?? '未知专辑' }}
-            </div>
-        </div>
+            </NText>
+        </NFlex>
     </NFlex>
 </template>
 <script setup lang="ts">
