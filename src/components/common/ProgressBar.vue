@@ -1,7 +1,7 @@
 <template>
     <NSlider
         :value="playerStore.currentTime"
-        :step="0.01"
+        :step="0.001"
         :min="0"
         :max="playerStore.duration"
         :format-tooltip="formatTooltip"

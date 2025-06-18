@@ -5,7 +5,7 @@
                 <NFlex align="center" justify="between" :wrap="false">
                     <NMenu
                         data-tauri-drag-region
-                        v-model:value="activeKey"
+                        v-model:value="activeMenuKey"
                         mode="horizontal"
                         :options="menuOptions" />
                     <NButton
@@ -56,10 +56,28 @@ import { useLayoutStore } from '@/stores/layout'
 import { usePlayerStore } from '@/stores/player'
 import { Settings as SettingsIcon } from 'lucide-vue-next'
 import type { MenuOption } from 'naive-ui'
-import { h } from 'vue'
-import { RouterLink, useRouter } from 'vue-router'
+import { h, ref, watch } from 'vue'
+import { RouterLink, useRouter, useRoute } from 'vue-router'
 
 const router = useRouter()
+const route = useRoute()
+const activeMenuKey = ref('home')
+watch(
+    () => route.path,
+    () => {
+        if (route.path.startsWith('/home')) {
+            activeMenuKey.value = 'home'
+        } else if (route.path.startsWith('/album')) {
+            activeMenuKey.value = 'album'
+        } else if (route.path.startsWith('/artist')) {
+            activeMenuKey.value = 'artist'
+        } else if (route.path.startsWith('/playlist')) {
+            activeMenuKey.value = 'playlist'
+        } else {
+            activeMenuKey.value = ''
+        }
+    }
+)
 const menuOptions: MenuOption[] = [
     {
         label: () => h(RouterLink, { to: '/home' }, { default: () => '首页' }),
