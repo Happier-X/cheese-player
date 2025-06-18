@@ -1,28 +1,42 @@
 <template>
-    <div class="flex flex-wrap">
-        <div v-for="(item, index) in list" :key="index" class="basis-1/6">
-            <div class="flex flex-col items-center gap-3">
-                <img
-                    class="aspect-square w-full rounded-full shadow-sm object-cover"
+    <NGrid x-gap="20" y-gap="20" :cols="7" collapsed :collapsed-rows="1">
+        <NGi v-for="(item, index) in list" :key="index">
+            <NFlex vertical align="center">
+                <NAvatar
+                    class="size-full shadow-sm"
+                    round
                     :src="item.cover"
-                    alt="" />
-                <div class="font-medium line-clamp-1 text-center">
-                    {{ item?.artist ?? '未知艺术家' }}
-                </div>
-            </div>
-        </div>
-    </div>
+                    @click="handlePlay(item)" />
+                <NText strong class="font-size-4 line-clamp-1">
+                    {{ item?.title ?? '未知艺术家' }}
+                </NText>
+            </NFlex>
+        </NGi>
+    </NGrid>
 </template>
 <script setup lang="ts">
-defineProps({
+import { CarouselItem } from '@/components/ui/carousel'
+import { usePlayerStore } from '@/stores/player'
+
+interface CarouselItem {
+    cover: string
+    [key: string]: any
+}
+
+const props = defineProps({
     list: {
-        type: Array as () => {
-            cover: string
-            title?: string
-            artist?: string
-        }[],
+        type: Array as () => CarouselItem[],
         required: true
     }
 })
+// 播放器状态管理
+const playerStore = usePlayerStore()
+/**
+ * 播放歌曲
+ */
+async function handlePlay(item: any) {
+    await playerStore.loadSong(item)
+    playerStore.setPlayQueue(props.list)
+    playerStore.play()
+}
 </script>
-<style scoped></style>

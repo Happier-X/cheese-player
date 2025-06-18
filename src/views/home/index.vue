@@ -2,21 +2,21 @@
     <NFlex vertical>
         <NFlex vertical :size="0">
             <NFlex justify="space-between" align="center">
-                <NH3 prefix="bar">推荐歌曲</NH3>
+                <NH3 prefix="bar" class="mt-5!">推荐歌曲</NH3>
                 <NButton text :focusable="false">查看更多</NButton>
             </NFlex>
             <RecommendSongList :list="songList" />
         </NFlex>
-        <NFlex vertical :size="0" class="pt-5">
+        <NFlex vertical :size="0">
             <NFlex justify="space-between" align="center">
-                <NH3 prefix="bar">推荐艺术家</NH3>
+                <NH3 prefix="bar" class="mt-5!">推荐艺术家</NH3>
                 <NButton text :focusable="false">查看更多</NButton>
             </NFlex>
             <RecommendArtistList :list="songList" />
         </NFlex>
-        <NFlex vertical :size="0" class="pt-5">
+        <NFlex vertical :size="0">
             <NFlex justify="space-between" align="center">
-                <NH3 prefix="bar">推荐专辑</NH3>
+                <NH3 prefix="bar" class="mt-5!">推荐专辑</NH3>
                 <NButton text :focusable="false">查看更多</NButton>
             </NFlex>
             <RecommendSongList :list="songList" />
