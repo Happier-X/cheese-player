@@ -1,7 +1,7 @@
 <template>
     <NFlex align="center" :vertical="column" class="w-full h-full">
         <NImage
-            class="aspect-square rounded-xl shadow-sm"
+            class="aspect-square rounded-xl shadow-md"
             preview-disabled
             :class="{
                 'h-full': !column,
