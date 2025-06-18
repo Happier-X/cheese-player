@@ -1,29 +1,17 @@
 <template>
-    <NFlex :wrap="false" align="center" :size="0" class="h-42px">
-        <NButton
-            quaternary
-            :focusable="false"
-            class="h-42px"
-            @click="handleMinimize">
-            <MinimizeIcon :size="16" />
-        </NButton>
-        <NButton
-            quaternary
-            :focusable="false"
-            class="scale-x-[-1] h-42px"
-            @click="handleToggleScreenSize">
-            <component
-                :is="isMaximized ? RestoreIcon : MaximizeIcon"
-                :size="16" />
-        </NButton>
-        <NButton
-            quaternary
-            :focusable="false"
-            class="h-42px"
-            @click="handleClose">
-            <CloseIcon :size="16" />
-        </NButton>
-    </NFlex>
+    <NButton text :focusable="false" @click="handleMinimize">
+        <MinimizeIcon :size="16" />
+    </NButton>
+    <NButton
+        text
+        :focusable="false"
+        class="scale-x-[-1]"
+        @click="handleToggleScreenSize">
+        <component :is="isMaximized ? RestoreIcon : MaximizeIcon" :size="16" />
+    </NButton>
+    <NButton class="mr-3" text :focusable="false" @click="handleClose">
+        <CloseIcon :size="16" />
+    </NButton>
 </template>
 <script setup lang="ts">
 import {

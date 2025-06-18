@@ -1,8 +1,8 @@
 <template>
-    <div class="w-screen h-screen relative">
+    <div class="size-screen relative">
         <NLayout position="absolute">
             <NLayoutHeader bordered data-tauri-drag-region>
-                <NFlex align="center" justify="between" :wrap="false">
+                <NFlex align="center" justify="space-between" :wrap="false">
                     <NMenu
                         data-tauri-drag-region
                         v-model:value="activeMenuKey"
@@ -31,7 +31,7 @@
             <NLayoutFooter position="absolute" class="bg-[unset]">
                 <NFlex
                     align="center"
-                    justify="between"
+                    justify="space-between"
                     :wrap="false"
                     class="h-[75px] p-3 relative">
                     <ProgressBar class="absolute -top-9px left-0" />
