@@ -58,6 +58,18 @@ const subsonicApi = {
         subsonicRequest({
             url: '/rest/getIndexes',
             params
+        }),
+    /**
+     * 根据id获取艺术家信息，包括传记、图像和相似艺术家
+     * @param {Object} params 参数
+     * @param {string} params.id 艺术家 ID
+     * @param {string} [params.count] 可选的，返回相似艺术家的最大数量
+     * @param {string} [params.includeNotPresent] 可选的，是否返回媒体库中不存在的艺术家
+     */
+    getArtistInfo: (params: object) =>
+        subsonicRequest({
+            url: '/rest/getArtistInfo',
+            params
         })
 }
 

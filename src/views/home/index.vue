@@ -87,6 +87,10 @@ const getArtistsList = async () => {
             }
         })
         console.log('艺术家列表:', artistsList.value)
+        const res2 = await subsonicApi.getArtistInfo({
+            id: artistsList.value[0].id
+        })
+        console.log('艺术家信息:', res2)
     } catch (error) {
         console.error('获取艺术家列表失败:', error)
     }
