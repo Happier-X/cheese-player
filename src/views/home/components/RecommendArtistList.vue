@@ -5,10 +5,10 @@
                 <NAvatar
                     class="size-full shadow-md"
                     round
-                    :src="item.cover"
+                    :src="item.artistImageUrl"
                     @click="handlePlay(item)" />
                 <NText strong class="font-size-4 line-clamp-1">
-                    {{ item?.title ?? '未知艺术家' }}
+                    {{ item?.name ?? '未知艺术家' }}
                 </NText>
             </NFlex>
         </NGi>

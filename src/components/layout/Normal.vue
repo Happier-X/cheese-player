@@ -79,6 +79,8 @@ watch(
     () => {
         if (route.path.startsWith('/home')) {
             activeMenuKey.value = 'home'
+        } else if (route.path.startsWith('/song')) {
+            activeMenuKey.value = 'song'
         } else if (route.path.startsWith('/album')) {
             activeMenuKey.value = 'album'
         } else if (route.path.startsWith('/artist')) {
@@ -94,24 +96,24 @@ const menuOptions: MenuOption[] = [
     {
         label: () => h(RouterLink, { to: '/home' }, { default: () => '首页' }),
         key: 'home'
-        // icon: renderIcon(HomeIcon)
+    },
+    {
+        label: () => h(RouterLink, { to: '/song' }, { default: () => '歌曲' }),
+        key: 'song'
     },
     {
         label: () => h(RouterLink, { to: '/album' }, { default: () => '专辑' }),
         key: 'album'
-        // icon: renderIcon(AlbumIcon)
     },
     {
         label: () =>
             h(RouterLink, { to: '/artist' }, { default: () => '艺术家' }),
         key: 'artist'
-        // icon: renderIcon(ArtistIcon)
     },
     {
         label: () =>
             h(RouterLink, { to: '/playlist' }, { default: () => '歌单' }),
         key: 'playlist'
-        // icon: renderIcon(PlaylistIcon)
     }
 ]
 const handleOpenSettings = () => {

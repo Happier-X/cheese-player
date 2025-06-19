@@ -12,7 +12,7 @@
                 <NH3 prefix="bar" class="mt-5!">推荐艺术家</NH3>
                 <NButton text :focusable="false">查看更多</NButton>
             </NFlex>
-            <RecommendArtistList :list="songList" />
+            <RecommendArtistList :list="artistsList" />
         </NFlex>
         <NFlex vertical :size="0">
             <NFlex justify="space-between" align="center">
@@ -73,7 +73,26 @@ const getSongList = async () => {
         console.error('获取歌曲列表失败:', error)
     }
 }
+// 艺术家列表
+const artistsList = ref<any[]>([])
+/**
+ * 获取艺术家列表
+ */
+const getArtistsList = async () => {
+    try {
+        const res: any = await subsonicApi.getArtistsIndexesList()
+        res.indexes.index.forEach((item: any) => {
+            if (item.artist && item.artist.length > 0) {
+                artistsList.value.push(...item.artist)
+            }
+        })
+        console.log('艺术家列表:', artistsList.value)
+    } catch (error) {
+        console.error('获取艺术家列表失败:', error)
+    }
+}
 onMounted(() => {
     getSongList()
+    getArtistsList()
 })
 </script>
