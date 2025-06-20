@@ -1,23 +1,64 @@
 <template>
     <div class="size-screen relative">
-        <n-layout position="absolute" has-sider>
-            <n-layout-sider bordered class="h-[calc(100vh-4.5rem)]">
-                侧边栏
-            </n-layout-sider>
-            <n-layout>
-                <n-layout-header class="h-10" bordered data-tauri-drag-region>
-                    <TitleBar></TitleBar>
-                </n-layout-header>
-                <n-layout-content>456</n-layout-content>
-            </n-layout>
-            <n-layout-footer bordered position="absolute" class="h-18">
-                底栏
-            </n-layout-footer>
-        </n-layout>
+        <NLayout position="absolute">
+            <NLayoutHeader data-tauri-drag-region>
+                <NFlex align="center" justify="space-between" :wrap="false">
+                    <img
+                        class="aspect-square h-42px p-1.5"
+                        src="@/assets/logo.png"
+                        alt="" />
+                    <NMenu
+                        data-tauri-drag-region
+                        v-model:value="activeMenuKey"
+                        mode="horizontal"
+                        :options="menuOptions" />
+                    <NInput
+                        class="w-60!"
+                        size="small"
+                        placeholder="请输入搜索内容">
+                        <template #suffix>
+                            <SearchIcon :size="16" color="#c2c2c2" />
+                        </template>
+                    </NInput>
+                    <NButton
+                        text
+                        :focusable="false"
+                        @click="handleOpenSettings">
+                        <SettingsIcon :size="16" />
+                    </NButton>
+                    <WindowControls />
+                </NFlex>
+            </NLayoutHeader>
+            <NLayoutContent
+                position="absolute"
+                class="top-42px! bottom-75px!"
+                content-class="px-1/10 pb-5"
+                :native-scrollbar="false">
+                <RouterView v-slot="{ Component }">
+                    <KeepAlive>
+                        <component :is="Component"></component>
+                    </KeepAlive>
+                </RouterView>
+            </NLayoutContent>
+            <NLayoutFooter position="absolute" class="bg-[unset]">
+                <NFlex
+                    align="center"
+                    justify="space-between"
+                    :wrap="false"
+                    class="h-[75px] p-3 relative">
+                    <ProgressBar class="absolute -top-9px left-0" />
+                    <MusicInfo
+                        class="w-full"
+                        :current-song-info="playerStore.currentSongInfo"
+                        @click-cover="layoutStore.toggleLayout" />
+                    <PlayControls class="w-full" />
+                    <QueueControls class="w-full" />
+                </NFlex>
+            </NLayoutFooter>
+        </NLayout>
     </div>
 </template>
 <script setup lang="ts">
-import TitleBar from './layout/TitleBar.vue'
 import MusicInfo from '@/components/common/MusicInfo.vue'
 import PlayControls from '@/components/common/PlayControls.vue'
 import ProgressBar from '@/components/common/ProgressBar.vue'
@@ -35,7 +76,6 @@ import {
     NLayoutContent,
     NLayoutFooter,
     NLayoutHeader,
-    NLayoutSider,
     NMenu,
     type MenuOption
 } from 'naive-ui'

@@ -1,7 +1,7 @@
 <template>
     <div class="size-screen relative">
         <NLayout position="absolute">
-            <NLayoutHeader bordered data-tauri-drag-region>
+            <NLayoutHeader data-tauri-drag-region>
                 <NFlex align="center" justify="space-between" :wrap="false">
                     <img
                         class="aspect-square h-42px p-1.5"
@@ -31,7 +31,7 @@
             </NLayoutHeader>
             <NLayoutContent
                 position="absolute"
-                class="top-43px! bottom-75px!"
+                class="top-42px! bottom-75px!"
                 content-class="px-1/10 pb-5"
                 :native-scrollbar="false">
                 <RouterView v-slot="{ Component }">
