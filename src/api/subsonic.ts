@@ -50,11 +50,11 @@ const subsonicApi = {
         }),
     /**
      * 获取艺术家的索引列表
-     * @param {Object} params 参数
+     * @param {Object} [params] 可选的，参数
      * @param {string} [params.musicFolderId] 可选的，音乐文件夹 ID
      * @param {string} [params.ifModifiedSince] 可选的，最后修改时间
      */
-    getArtistsIndexesList: (params: object) =>
+    getArtistsIndexesList: (params?: object) =>
         subsonicRequest({
             url: '/rest/getIndexes',
             params

@@ -13,6 +13,7 @@
 <script setup lang="ts">
 import { usePlayerStore } from '@/stores/player'
 import { ref, watch } from 'vue'
+import { NSlider } from 'naive-ui'
 
 const playerStore = usePlayerStore()
 const isDragging = ref(false)

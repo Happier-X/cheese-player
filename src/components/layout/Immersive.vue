@@ -47,6 +47,7 @@ import Lyric from '@/components/common/Lyric.vue'
 import ProgressBar from '@/components/common/ProgressBar.vue'
 import PlayControls from '@/components/common/PlayControls.vue'
 import QueueControls from '@/components/common/QueueControls.vue'
+import { NFlex, NButton } from 'naive-ui'
 
 const layoutStore = useLayoutStore()
 const playerStore = usePlayerStore()

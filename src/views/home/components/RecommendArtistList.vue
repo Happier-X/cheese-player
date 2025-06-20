@@ -15,8 +15,8 @@
     </NGrid>
 </template>
 <script setup lang="ts">
-import { CarouselItem } from '@/components/ui/carousel'
 import { usePlayerStore } from '@/stores/player'
+import { NGrid, NGi, NFlex, NAvatar, NText } from 'naive-ui'
 
 interface CarouselItem {
     cover: string

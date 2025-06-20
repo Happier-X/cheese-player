@@ -38,6 +38,6 @@ import {
     Pause as PauseIcon
 } from 'lucide-vue-next'
 import { usePlayerStore } from '@/stores/player'
-import { NFlex } from 'naive-ui'
+import { NFlex, NButton } from 'naive-ui'
 const playerStore = usePlayerStore()
 </script>

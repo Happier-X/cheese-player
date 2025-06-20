@@ -25,6 +25,7 @@ import {
     X as CloseIcon
 } from 'lucide-vue-next'
 import { useWindowControl } from '@/composables/useWindowControl'
+import { NFlex, NButton } from 'naive-ui'
 
 const { isMaximized, handleMinimize, handleToggleScreenSize, handleClose } =
     useWindowControl()

@@ -85,6 +85,7 @@ import {
     CircleX as UnlinkIcon
 } from 'lucide-vue-next'
 import { onMounted, ref } from 'vue'
+import { NCard, NFlex, NInput, NTag, NText } from 'naive-ui'
 
 const mediaServer = ref({
     url: '',

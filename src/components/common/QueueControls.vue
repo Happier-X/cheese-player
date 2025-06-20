@@ -38,5 +38,7 @@ import {
     ListMusic as PlayQueueIcon
 } from 'lucide-vue-next'
 import { usePlayerStore } from '@/stores/player'
+import { NFlex, NButton } from 'naive-ui'
+
 const playerStore = usePlayerStore()
 </script>

@@ -29,6 +29,7 @@ import subsonicApi from '@/api/subsonic'
 import RecommendArtistList from '@/views/home/components/RecommendArtistList.vue'
 import RecommendSongList from '@/views/home/components/RecommendSongList.vue'
 import { onMounted, ref } from 'vue'
+import { NH3, NButton, NFlex } from 'naive-ui'
 
 // 歌曲总数
 const total = ref(0)

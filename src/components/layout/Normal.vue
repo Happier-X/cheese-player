@@ -70,6 +70,15 @@ import { Search as SearchIcon, Settings as SettingsIcon } from 'lucide-vue-next'
 import { type MenuOption } from 'naive-ui'
 import { h, ref, watch } from 'vue'
 import { RouterLink, useRouter, useRoute } from 'vue-router'
+import {
+    NLayout,
+    NLayoutHeader,
+    NLayoutContent,
+    NLayoutFooter,
+    NFlex,
+    NMenu,
+    NInput
+} from 'naive-ui'
 
 const router = useRouter()
 const route = useRoute()

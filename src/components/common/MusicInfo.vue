@@ -26,6 +26,7 @@
     </NFlex>
 </template>
 <script setup lang="ts">
+import { NFlex, NImage, NText } from 'naive-ui'
 defineProps({
     currentSongInfo: {
         type: Object
