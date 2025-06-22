@@ -1,12 +1,15 @@
 <template>
     <div class="size-screen relative">
         <n-layout position="absolute" has-sider>
-            <n-layout-sider bordered class="h-[calc(100vh-4.5rem)]">
-                侧边栏
+            <n-layout-sider
+                bordered
+                class="h-[calc(100vh-4.5rem)]"
+                content-class="p-2">
+                <SideBar />
             </n-layout-sider>
             <n-layout>
                 <n-layout-header class="h-10" bordered>
-                    <TitleBar></TitleBar>
+                    <TitleBar />
                 </n-layout-header>
                 <n-layout-content>456</n-layout-content>
             </n-layout>
@@ -18,6 +21,7 @@
 </template>
 <script setup lang="ts">
 import TitleBar from '@/components/layout/TitleBar.vue'
+import SideBar from '@/components/layout/SideBar.vue'
 import MusicInfo from '@/components/common/MusicInfo.vue'
 import PlayControls from '@/components/common/PlayControls.vue'
 import ProgressBar from '@/components/common/ProgressBar.vue'

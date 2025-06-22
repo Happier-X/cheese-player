@@ -1,0 +1,70 @@
+<template>
+    <n-menu
+        data-tauri-drag-region
+        v-model:value="activeMenuKey"
+        :options="menuOptions" />
+</template>
+<script setup lang="ts">
+import { NMenu, type MenuOption, NIcon } from 'naive-ui'
+import { h, ref, watch, type Component } from 'vue'
+import { RouterLink, useRoute } from 'vue-router'
+import {
+    House as HomeIcon,
+    Music as SongIcon,
+    Disc3 as AlbumIcon,
+    MicVocal as ArtistIcon,
+    ScrollText as PlaylistIcon
+} from 'lucide-vue-next'
+const activeMenuKey = ref('home')
+const route = useRoute()
+watch(
+    () => route.path,
+    () => {
+        if (route.path.startsWith('/home')) {
+            activeMenuKey.value = 'home'
+        } else if (route.path.startsWith('/song')) {
+            activeMenuKey.value = 'song'
+        } else if (route.path.startsWith('/album')) {
+            activeMenuKey.value = 'album'
+        } else if (route.path.startsWith('/artist')) {
+            activeMenuKey.value = 'artist'
+        } else if (route.path.startsWith('/playlist')) {
+            activeMenuKey.value = 'playlist'
+        } else {
+            activeMenuKey.value = ''
+        }
+    }
+)
+const renderIcon = (icon: Component) => {
+    return () => h(NIcon, null, { default: () => h(icon) })
+}
+const menuOptions: MenuOption[] = [
+    {
+        label: () => h(RouterLink, { to: '/home' }, { default: () => '首页' }),
+        key: 'home',
+        icon: renderIcon(HomeIcon)
+    },
+    {
+        label: () => h(RouterLink, { to: '/song' }, { default: () => '歌曲' }),
+        key: 'song',
+        icon: renderIcon(SongIcon)
+    },
+    {
+        label: () => h(RouterLink, { to: '/album' }, { default: () => '专辑' }),
+        key: 'album',
+        icon: renderIcon(AlbumIcon)
+    },
+    {
+        label: () =>
+            h(RouterLink, { to: '/artist' }, { default: () => '艺术家' }),
+        key: 'artist',
+        icon: renderIcon(ArtistIcon)
+    },
+    {
+        label: () =>
+            h(RouterLink, { to: '/playlist' }, { default: () => '歌单' }),
+        key: 'playlist',
+        icon: renderIcon(PlaylistIcon)
+    }
+]
+</script>
