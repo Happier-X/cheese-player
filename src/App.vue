@@ -5,7 +5,7 @@
                 侧边栏
             </n-layout-sider>
             <n-layout>
-                <n-layout-header class="h-10" bordered data-tauri-drag-region>
+                <n-layout-header class="h-10" bordered>
                     <TitleBar></TitleBar>
                 </n-layout-header>
                 <n-layout-content>456</n-layout-content>
@@ -17,7 +17,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import TitleBar from './layout/TitleBar.vue'
+import TitleBar from '@/components/layout/TitleBar.vue'
 import MusicInfo from '@/components/common/MusicInfo.vue'
 import PlayControls from '@/components/common/PlayControls.vue'
 import ProgressBar from '@/components/common/ProgressBar.vue'
