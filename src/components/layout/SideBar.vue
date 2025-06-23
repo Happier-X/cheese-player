@@ -31,6 +31,8 @@ watch(
             activeMenuKey.value = 'artist'
         } else if (route.path.startsWith('/playlist')) {
             activeMenuKey.value = 'playlist'
+        } else if (route.path.startsWith('/settings')) {
+            activeMenuKey.value = 'settings'
         } else {
             activeMenuKey.value = ''
         }

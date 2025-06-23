@@ -1,13 +1,13 @@
 <template>
-    <NFlex align="center" justify="center">
-        <NButton
+    <n-flex align="center" justify="center">
+        <n-button
             quaternary
             circle
             :focusable="false"
             @click="playerStore.playPrevious">
-            <PreviousIcon :size="18" />
-        </NButton>
-        <NButton
+            <PreviousIcon class="size-5" />
+        </n-button>
+        <n-button
             tertiary
             circle
             :focusable="false"
@@ -19,16 +19,16 @@
             ">
             <component
                 :is="playerStore.isPlaying ? PauseIcon : PlayIcon"
-                :size="20" />
-        </NButton>
-        <NButton
+                class="size-5.5" />
+        </n-button>
+        <n-button
             quaternary
             circle
             :focusable="false"
             @click="playerStore.playNext">
-            <NextIcon :size="18" />
-        </NButton>
-    </NFlex>
+            <NextIcon class="size-5" />
+        </n-button>
+    </n-flex>
 </template>
 <script setup lang="ts">
 import {

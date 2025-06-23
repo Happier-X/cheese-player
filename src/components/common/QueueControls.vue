@@ -1,6 +1,6 @@
 <template>
-    <NFlex align="center" justify="end">
-        <NButton
+    <n-flex align="center" justify="end">
+        <n-button
             quaternary
             circle
             :focusable="false"
@@ -9,9 +9,9 @@
             ">
             <component
                 :is="playerStore.loopMode === 0 ? ListLoopIcon : SingleLoopIcon"
-                :size="18" />
-        </NButton>
-        <NButton
+                class="size-5" />
+        </n-button>
+        <n-button
             quaternary
             circle
             :focusable="false"
@@ -22,12 +22,12 @@
                 :is="
                     playerStore.playMode === 0 ? OrderPlayIcon : ShufflePlayIcon
                 "
-                :size="18" />
-        </NButton>
-        <NButton quaternary circle :focusable="false">
-            <PlayQueueIcon :size="18" />
-        </NButton>
-    </NFlex>
+                class="size-5" />
+        </n-button>
+        <n-button quaternary circle :focusable="false">
+            <PlayQueueIcon class="size-5" />
+        </n-button>
+    </n-flex>
 </template>
 <script setup lang="ts">
 import {
