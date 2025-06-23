@@ -5,7 +5,7 @@
         :options="menuOptions" />
 </template>
 <script setup lang="ts">
-import { NMenu, type MenuOption, NIcon } from 'naive-ui'
+import { NMenu, type MenuOption } from 'naive-ui'
 import { h, ref, watch, type Component } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 import {
@@ -13,7 +13,8 @@ import {
     Music as SongIcon,
     Disc3 as AlbumIcon,
     MicVocal as ArtistIcon,
-    ScrollText as PlaylistIcon
+    ScrollText as PlaylistIcon,
+    Settings as SettingsIcon
 } from 'lucide-vue-next'
 const activeMenuKey = ref('home')
 const route = useRoute()
@@ -36,7 +37,10 @@ watch(
     }
 )
 const renderIcon = (icon: Component) => {
-    return () => h(NIcon, null, { default: () => h(icon) })
+    return () =>
+        h(icon, {
+            size: '1.25rem'
+        })
 }
 const menuOptions: MenuOption[] = [
     {
@@ -65,6 +69,12 @@ const menuOptions: MenuOption[] = [
             h(RouterLink, { to: '/playlist' }, { default: () => '歌单' }),
         key: 'playlist',
         icon: renderIcon(PlaylistIcon)
+    },
+    {
+        label: () =>
+            h(RouterLink, { to: '/settings' }, { default: () => '设置' }),
+        key: 'settings',
+        icon: renderIcon(SettingsIcon)
     }
 ]
 </script>
