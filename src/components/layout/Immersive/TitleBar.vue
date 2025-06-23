@@ -2,14 +2,14 @@
     <n-flex
         align="center"
         justify="space-between"
-        class="h-full px-3"
+        class="size-full px-3"
         data-tauri-drag-region>
         <n-flex align="center">
-            <n-button text :focusable="false" @click="handleBack">
-                <BackIcon class="size-5" />
-            </n-button>
-            <n-button text :focusable="false" @click="handleForward">
-                <ForwardIcon class="size-5" />
+            <n-button
+                text
+                :focusable="false"
+                @click="layoutStore.toggleLayout()">
+                <CloseImmersiveIcon class="size-5" />
             </n-button>
         </n-flex>
         <n-flex align="center">
@@ -34,15 +34,15 @@
 <script setup lang="ts">
 import { useWindowControl } from '@/composables/useWindowControl'
 import {
-    ChevronLeft as BackIcon,
     X as CloseIcon,
-    ChevronRight as ForwardIcon,
+    ChevronDown as CloseImmersiveIcon,
     Square as MaximizeIcon,
     Minus as MinimizeIcon,
     Copy as RestoreIcon
 } from 'lucide-vue-next'
 import { NButton, NFlex } from 'naive-ui'
 import { useRouter } from 'vue-router'
+import { useLayoutStore } from '@/stores/layout'
 
 const { isMaximized, handleMinimize, handleToggleScreenSize, handleClose } =
     useWindowControl()
@@ -53,4 +53,5 @@ const handleBack = () => {
 const handleForward = () => {
     router.forward()
 }
+const layoutStore = useLayoutStore()
 </script>

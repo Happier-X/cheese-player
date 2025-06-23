@@ -3,7 +3,7 @@
         align="center"
         justify="space-between"
         :wrap="false"
-        class="h-full p-3 relative">
+        class="size-full p-3 relative">
         <ProgressBar class="absolute -top-9px left-0" />
         <MusicInfo
             class="w-full"
