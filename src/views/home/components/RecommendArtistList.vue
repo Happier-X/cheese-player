@@ -1,5 +1,5 @@
 <template>
-    <NGrid x-gap="20" y-gap="20" :cols="7" collapsed :collapsed-rows="1">
+    <NGrid x-gap="20" y-gap="20" :cols="5" collapsed :collapsed-rows="1">
         <NGi v-for="(item, index) in list" :key="index">
             <NFlex vertical align="center">
                 <NAvatar
