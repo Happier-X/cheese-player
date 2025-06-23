@@ -19,7 +19,7 @@
         "crypto-js": "^4.2.0",
         "howler": "^2.2.4",
         "lrc-file-parser": "^2.4.1",
-        "lucide-vue-next": "^0.518.0",
+        "lucide-vue-next": "^0.522.0",
         "music-metadata": "^11.3.0",
         "pinia": "^3.0.3",
         "tailwind-merge": "^3.3.1",
