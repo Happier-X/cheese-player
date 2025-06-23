@@ -4,9 +4,13 @@
             <n-layout-sider
                 bordered
                 class="h-[calc(100vh-4.5rem)]"
-                content-class="p-2"
-                show-trigger="bar">
-                <SideBar />
+                show-trigger="bar"
+                :collapsed="collapsed"
+                :collapsed-width="64"
+                collapse-mode="width"
+                @collapse="collapsed = true"
+                @expand="collapsed = false">
+                <SideBar :collapsed="collapsed" />
             </n-layout-sider>
             <div class="size-full relative">
                 <n-layout position="absolute">
@@ -46,7 +50,7 @@ import {
     NLayoutHeader,
     NLayoutSider
 } from 'naive-ui'
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 
 const playerStore = usePlayerStore()
 const appWindow = getCurrentWindow()
@@ -61,4 +65,5 @@ onMounted(async () => {
     await playerStore.loadSong(res.currentSongInfo)
     playerStore.setPlayQueue(res.currentPlayQueue)
 })
+const collapsed = ref(false)
 </script>

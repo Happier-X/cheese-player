@@ -2,7 +2,9 @@
     <n-menu
         data-tauri-drag-region
         v-model:value="activeMenuKey"
-        :options="menuOptions" />
+        :options="menuOptions"
+        :collapsed="collapsed"
+        :collapsed-width="64" />
 </template>
 <script setup lang="ts">
 import { NMenu, type MenuOption } from 'naive-ui'
@@ -79,4 +81,9 @@ const menuOptions: MenuOption[] = [
         icon: renderIcon(SettingsIcon)
     }
 ]
+defineProps({
+    collapsed: {
+        type: Boolean
+    }
+})
 </script>
