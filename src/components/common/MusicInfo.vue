@@ -1,5 +1,5 @@
 <template>
-    <n-flex align="center" :vertical="column" class="w-full h-full">
+    <n-flex align="center" :wrap="false" :vertical="column" class="size-full">
         <img
             class="aspect-square rounded-xl shadow-md object-cover"
             :class="{
