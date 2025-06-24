@@ -1,22 +1,21 @@
 <template>
-    <NGrid x-gap="20" y-gap="20" :cols="5" collapsed :collapsed-rows="1">
-        <NGi v-for="(item, index) in list" :key="index">
-            <NFlex vertical align="center">
-                <NAvatar
-                    class="size-full shadow-md"
-                    round
+    <n-grid x-gap="20" y-gap="20" :cols="5" collapsed :collapsed-rows="1">
+        <n-gi v-for="(item, index) in list" :key="index">
+            <n-flex vertical align="center">
+                <img
+                    class="aspect-square rounded-full shadow-md object-cover"
                     :src="item.artistImageUrl"
                     @click="handlePlay(item)" />
-                <NText strong class="font-size-4 line-clamp-1">
+                <n-text strong class="font-size-4 line-clamp-1">
                     {{ item?.name ?? '未知艺术家' }}
-                </NText>
-            </NFlex>
-        </NGi>
-    </NGrid>
+                </n-text>
+            </n-flex>
+        </n-gi>
+    </n-grid>
 </template>
 <script setup lang="ts">
 import { usePlayerStore } from '@/stores/player'
-import { NGrid, NGi, NFlex, NAvatar, NText } from 'naive-ui'
+import { NGrid, NGi, NFlex, NText } from 'naive-ui'
 
 interface CarouselItem {
     cover: string

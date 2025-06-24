@@ -1,32 +1,30 @@
 <template>
-    <NFlex align="center" :vertical="column" class="w-full h-full">
-        <NImage
-            class="aspect-square rounded-xl shadow-md"
-            preview-disabled
+    <n-flex align="center" :vertical="column" class="w-full h-full">
+        <img
+            class="aspect-square rounded-xl shadow-md object-cover"
             :class="{
                 'h-full': !column,
                 'w-3/5 mx-auto': column
             }"
-            object-fit="cover"
             :src="
                 currentSongInfo?.cover ??
                 'https://img.daisyui.com/images/profile/demo/1@94.webp'
             "
             alt="封面"
             @click="handleClickCover" />
-        <NFlex vertical :size="0" :class="{ 'text-center w-full': column }">
-            <NText strong class="font-size-4 line-clamp-1">
+        <n-flex vertical :size="0" :class="{ 'text-center w-full': column }">
+            <n-text strong class="font-size-4 line-clamp-1">
                 {{ currentSongInfo?.title ?? '未知歌曲' }}
-            </NText>
-            <NText :depth="3" class="line-clamp-1">
+            </n-text>
+            <n-text :depth="3" class="line-clamp-1">
                 {{ currentSongInfo?.artist ?? '未知艺术家' }} -
                 {{ currentSongInfo?.album ?? '未知专辑' }}
-            </NText>
-        </NFlex>
-    </NFlex>
+            </n-text>
+        </n-flex>
+    </n-flex>
 </template>
 <script setup lang="ts">
-import { NFlex, NImage, NText } from 'naive-ui'
+import { NFlex, NText } from 'naive-ui'
 defineProps({
     currentSongInfo: {
         type: Object
